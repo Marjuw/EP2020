@@ -23,7 +23,7 @@ Diejenigen, die Helfer für ein Projekt suchen, haben durch kontextrelevante Fun
 Um diese Vision zu erreichen planen wir unsere Anwendung als einen Webservice umzusetzen, um Leute ortsunabhängig miteinander in Verbindung zu bringen.
 Nutzer sollen relevante Informationen über sich eintragen können und entscheiden was davon in welchem Kontext zugänglich ist. Projektbetreiber bzw. Leiter können alle relevanten Informationen darstellen und einfach die Parameter für Anfragen anpassen. Die Suchenden sollen mit Hilfe von Filtern einfacher an für sie interessante Ergebnisse gelangen. Das Auffinden und Präsentieren von Projektideen sowie die Kontaktaufnahme zwischen Interessenten und Leitern soll unter Einbezug ethischer, sozialer, und psychologischer Kriterien entwickelt werden.
 
-Mit Hilfe von Modellen und Mockups die Features einer App gestalten werden.
+Mit Hilfe von Modellen und Mockups sollen die Features einer App gestalten werden.
 In der darauf folgenden Entwicklungsphase soll eine Teilfunktionalität dieser App als Prototyps realisiert werden. Geplant hierfür ist die Umsetzung des Schreibens und Lesens von Projekteinträgen unterschiedlicher Clients (App-Benutzer) auf einem gemeinsamen Server.
 
 ## Relevanz
