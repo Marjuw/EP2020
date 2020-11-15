@@ -16,7 +16,7 @@ In jedem Fall ist es jedoch ein zeitraubender Mehraufwand sich zweckentfremdend 
 Hier soll unsere Projekt-Sharing-App Abhilfe schaffen und als gezielte Anlaufstelle motivierte Leute unkompliziert miteinander in Verbindung bringen.
 Für alle Suchenden ist es von Vorteil, dass es sich hierbei um eine Börse handelt, die spezifisch für diese Domäne erstellt wurde. Dadurch wird das Suchen über mehrere Plattformen überflüssig. Zudem soll es komfortable Features bieten, welche kontextrelevant sind.
 Aus dem Grund, dass sich alle Personen zu diesem Zweck auf der Plattform aufhalten, ist der Durchlauf an Interessenten auch höher, als auf einer nicht spezialisierten Börse.
-Diejenigen, die Helfer für ein Projekt suchen, haben durch kontextrelevante Funktionen einen einfacheren Arbeitsablauf bei der Auswahl der Nutzer, der Präsentation des Projekts und den Projektsuchende werden effektive Suchfilter und informelle Darstellungen der Projekte präsentiert, damit diese schneller ihr Wunschprojekt finden können.
+Diejenigen, die Helfer für ein Projekt suchen, sollen durch kontextrelevante Funktionen in ihrem Arbeitsablauf unterstüzt werden. Darunter fallen beispielsweise Filtermasken für die Verwaltung von Projektanwerbern und diverse Einstellungen für eine angepasste Darstellung des Projekts. Den Projektsuchende werden effektive Suchfilter und informelle Darstellungen der Projekte präsentiert, damit diese schneller ihr Wunschprojekt finden können.
 
 ## Zielsetzung
 
