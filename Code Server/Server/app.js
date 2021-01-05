@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./api/routes/users");
+const projectRoutes = require("./api/routes/project");
+
 
 mongoose.connect(
     "mongodb://admin-nodeRest:admin-nodeREST@node-rest-shop-shard-00-00-ff4nw.mongodb.net:27017,node-rest-shop-shard-00-01-ff4nw.mongodb.net:27017,node-rest-shop-shard-00-02-ff4nw.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -30,6 +32,24 @@ app.use((req, res, next) => {
 
 // Routes which should handle requests
 app.use("/users", userRoutes);
+
+app.use((req, res, next) => {
+    const error = new Error("Not found");
+    error.status = 404;
+    next(error);
+});
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
+});
+
+// Routes which should handle requests
+app.use("/projects", userRoutes);
 
 app.use((req, res, next) => {
     const error = new Error("Not found");
