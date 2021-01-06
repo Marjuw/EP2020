@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
     interessen: [String],      //Tag
     faehigkeiten: [String],     //Tag
    // avatarPicture:  String,   // Bild Dateityp ?
-    kommunikation: String
+    kommunikation: String,
 
 });
 

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const userRoutes = require("./api/routes/users");
-const projectRoutes = require("./api/routes/project");
+//const projectRoutes = require("./api/routes/projects");
 
 
 mongoose.connect(
@@ -48,8 +48,9 @@ app.use((error, req, res, next) => {
     });
 });
 
+/*
 // Routes which should handle requests
-app.use("/projects", userRoutes);
+app.use("/projects", projectRoutes);
 
 app.use((req, res, next) => {
     const error = new Error("Not found");
@@ -64,6 +65,6 @@ app.use((error, req, res, next) => {
             message: error.message
         }
     });
-});
+});*/
 
 module.exports = app;

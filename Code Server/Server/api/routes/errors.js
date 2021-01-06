@@ -7,13 +7,13 @@ class DomainError extends Error {
         Error.captureStackTrace(this, this.constructor);
     }
 }
-
 class ResourceNotFoundError extends DomainError {
     constructor(resource, query) {
         super('Resource ' + resource + ' was not found.');
         this.data = { resource, query };
     }
 }
+
 
 class InternalError extends DomainError {
     constructor(error) {

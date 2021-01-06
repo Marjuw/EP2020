@@ -65,6 +65,7 @@ router.post("/", (req, res, next) => {
 });
 
 // Liste von Projekten basierend auf dem Suchbegriff und Tags anzeigen                // Unklar???
+/*
 router.get("?{searchword}&{tags}", (req, res, next) => {
 
     Project.find()
@@ -79,12 +80,12 @@ router.get("?{searchword}&{tags}", (req, res, next) => {
                 error: err
             });
         });
-});
+});*/
 
 //Erhalte bestimmtes Projekt
 router.get("/:projectID", (req, res, next) => {
 
-    const id = req.params.projectID;
+    const id = req.params.projectId;
     Project.findById(id)
         .exec()
         .then(doc => {
@@ -103,11 +104,11 @@ router.get("/:projectID", (req, res, next) => {
         });
 });
 
-//Lösche bestimmten User
-router.delete("/:userId", (req, res, next) => {
+//Lösche bestimmtes Projekt
+router.delete("/:ProjectId", (req, res, next) => {
 
-    const id = req.params.userId;
-    User.remove({_id: id})
+    const id = req.params.projectId;
+    Project.remove({_id: id})
     //Hier muss noch hin was mit dem Projekt passiert, wenn dieser USer eins erstellt hat
         .exec()
         .then(result => {
@@ -122,15 +123,15 @@ router.delete("/:userId", (req, res, next) => {
         });
 });
 
-//Bearbeite/aktualisiere bestimmtem User
+//Bearbeite/aktualisiere bestimmtes Projekt
 //Zum Testen: [{"propName": <Attributname>, "value": <neuer Attributwert>}]
-router.put("/:userId", (req, res, next) => {
-    const id = req.params.userId;
+router.put("/:projectId", (req, res, next) => {
+    const id = req.params.projectId;
     const updateOps = {};
     for (const ops of req.body) {
         updateOps[ops.propName] = ops.value;
     }
-    User.update({ _id: id }, { $set: updateOps })
+    Project.update({ _id: id }, { $set: updateOps })
         .exec()
         .then(result => {
             console.log(result);

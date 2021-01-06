@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const feedbackSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('feedback', feedbackSchema);

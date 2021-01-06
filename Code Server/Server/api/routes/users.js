@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
     const user = new User({
 
         _id: new mongoose.Types.ObjectId(),
-        nickname: req.body.name,
+        nickname: req.body.nickname,
         vorname: req.body.vorname,
         vorname_sichtbar: req.body.vorname_sichtbar,
         name: req.body.name,
@@ -64,6 +64,7 @@ router.post("/", (req, res, next) => {
 });
 
 // Liste von Nutzern basierend auf dem Suchbegriff und Tags anzeigen                // Unklar???
+/*
 router.get("?{searchword}&{tags}", (req, res, next) => {
     User.find()
         .exec()
@@ -78,10 +79,12 @@ router.get("?{searchword}&{tags}", (req, res, next) => {
             });
         });
 });
+*/
 
 //Erhalte bestimmten User
-router.get("/:userID", (req, res, next) => {
-    const id = req.params.userID;
+router.get("/:userId", (req, res, next) => {
+
+    const id = req.params.userId;
     User.findById(id)
         .exec()
         .then(doc => {
@@ -98,6 +101,7 @@ router.get("/:userID", (req, res, next) => {
             console.log(err);
             res.status(500).json({ error: err });
         });
+
 });
 
 //Lösche bestimmten User
@@ -121,7 +125,8 @@ router.delete("/:userId", (req, res, next) => {
 
 //Bearbeite/aktualisiere bestimmtem User
 //Zum Testen: [{"propName": <Attributname>, "value": <neuer Attributwert>}]
-router.put("/:userId", (req, res, next) => {
+router.put("/:userID", (req, res, next) => {
+
     const id = req.params.userId;
     const updateOps = {};
     for (const ops of req.body) {
@@ -140,7 +145,6 @@ router.put("/:userId", (req, res, next) => {
             });
         });
 });
-
 
 
 module.exports = router;
