@@ -4,8 +4,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const userRoutes = require("./api/routes/users");
-//const projectRoutes = require("./api/routes/projects");
+//const userRoutes = require("./api/routes/users");
+const projectRoutes = require("./api/routes/projects");
 
 
 mongoose.connect(
@@ -30,6 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 
+/*
 // Routes which should handle requests
 app.use("/users", userRoutes);
 
@@ -47,8 +48,8 @@ app.use((error, req, res, next) => {
         }
     });
 });
+*/
 
-/*
 // Routes which should handle requests
 app.use("/projects", projectRoutes);
 
@@ -65,6 +66,6 @@ app.use((error, req, res, next) => {
             message: error.message
         }
     });
-});*/
+});
 
 module.exports = app;

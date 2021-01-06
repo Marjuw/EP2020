@@ -15,8 +15,8 @@ const userSchema = mongoose.Schema({
     ort: String,
     ort_sichtbar: Boolean,  //wenn true dann nicht nur innerhalb des eigenen Profils und Teams sondern auch global sichtbar
     beschreibung: String,
-    interessen: [String],      //Tag
-    faehigkeiten: [String],     //Tag
+   // interessen: [String],      //Tag
+   // faehigkeiten: [String],     //Tag
    // avatarPicture:  String,   // Bild Dateityp ?
     kommunikation: String,
 

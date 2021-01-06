@@ -125,7 +125,8 @@ router.delete("/:userId", (req, res, next) => {
 
 //Bearbeite/aktualisiere bestimmtem User
 //Zum Testen: [{"propName": <Attributname>, "value": <neuer Attributwert>}]
-router.put("/:userID", (req, res, next) => {
+// ZB:  [{"propName": "nickname", "value": "NachUpdate"}]
+/*router.put("/:userId", (req, res, next) => {
 
     const id = req.params.userId;
     const updateOps = {};
@@ -133,6 +134,27 @@ router.put("/:userID", (req, res, next) => {
         updateOps[ops.propName] = ops.value;
     }
     User.update({ _id: id }, { $set: updateOps })
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});*/
+
+// ZB: {"nickname": "NachUpdate"}
+router.put("/:userId", (req, res, next) => {
+    const id = req.params.userId;
+   // const updateOps = {};
+   // for (const ops of req.body) {
+   //     updateOps[ops.propName] = ops.value;
+   // }
+    User.update({ _id: id }, { $set: req.body })
         .exec()
         .then(result => {
             console.log(result);

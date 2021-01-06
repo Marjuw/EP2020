@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const projectSchema = mongoose.Schema({
 
+
     _id: mongoose.Schema.Types.ObjectId,
-    projektleiter: mongoose.Schema.Types.ObjectId,
+    projektleiter: {type: String, required: true} ,   //Hier soll die UserID automatisch eingetragen werden
     name: {type: String, required: true},
     gewuenschteTeamgroesse: Number,
     gewuenschteRollen: String,
@@ -16,7 +17,7 @@ const projectSchema = mongoose.Schema({
     dauer: Number,
     anforderung: [String],    //Tag
     aktuelleTeilnehmerzahl: Number,
-    teilnehmer: [mongoose.Schema.Types.ObjectId],
+    teilnehmer: Number, //Hier soll die UserID der Teilnehmer automatisch eingetragen werden
     teilnehmer_sichtbar: Boolean        //wenn true dann nicht nur innerhalb des Teams sondern auch global sichtbar
 
 

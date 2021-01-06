@@ -29,7 +29,7 @@ router.post("/", (req, res, next) => {
 
     const project = new Project({
 
-        _id: mongoose.Schema.Types.ObjectId,
+        _id: new mongoose.Types.ObjectId(),
         projektleiter: req.body.projektleiter,
         name: req.body.name,
         gewuenschteTeamgroesse: req.body.gewuenschteTeamgroesse,
@@ -48,12 +48,12 @@ router.post("/", (req, res, next) => {
 
     });
 
-    user.save()
+    project.save()
         .then(result => {
             console.log(result);
             res.status(201).json({
                 message: "Handling POST requests to /projects",
-                createdUser: result
+                createdProject: result
             });
         })
         .catch(err => {
@@ -83,7 +83,7 @@ router.get("?{searchword}&{tags}", (req, res, next) => {
 });*/
 
 //Erhalte bestimmtes Projekt
-router.get("/:projectID", (req, res, next) => {
+router.get("/:projectId", (req, res, next) => {
 
     const id = req.params.projectId;
     Project.findById(id)
@@ -105,11 +105,11 @@ router.get("/:projectID", (req, res, next) => {
 });
 
 //Lösche bestimmtes Projekt
-router.delete("/:ProjectId", (req, res, next) => {
+router.delete("/:projectId", (req, res, next) => {
 
     const id = req.params.projectId;
     Project.remove({_id: id})
-    //Hier muss noch hin was mit dem Projekt passiert, wenn dieser USer eins erstellt hat
+    //Hier muss noch hin was mit dem Projekt passiert, wenn dieses Projekt eins erstellt hat
         .exec()
         .then(result => {
             res.status(200).json(result);
@@ -125,7 +125,7 @@ router.delete("/:ProjectId", (req, res, next) => {
 
 //Bearbeite/aktualisiere bestimmtes Projekt
 //Zum Testen: [{"propName": <Attributname>, "value": <neuer Attributwert>}]
-router.put("/:projectId", (req, res, next) => {
+/*router.put("/:projectId", (req, res, next) => {
     const id = req.params.projectId;
     const updateOps = {};
     for (const ops of req.body) {
@@ -143,8 +143,28 @@ router.put("/:projectId", (req, res, next) => {
                 error: err
             });
         });
-});
+});*/
 
+// ZB: {"name": "NachUpdate"}
+router.put("/:projectId", (req, res, next) => {
+    const id = req.params.projectId;
+    // const updateOps = {};
+    // for (const ops of req.body) {
+    //     updateOps[ops.propName] = ops.value;
+    // }
+    Project.update({ _id: id }, { $set: req.body })
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
 
 
 module.exports = router;
