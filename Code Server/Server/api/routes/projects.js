@@ -3,18 +3,20 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const request = require("request");
 
-
 const Project = require("../models/project");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
 
 //Erhalte alle Proejkte                                //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
 router.get("/", (req, res, next) => {
-    Project.find()
+
+    const query = req.query;   // Falls Qury parameter angegeben werden wird gefiltert
+
+    Project.find(query)   // Direkt mit Query da wenn keine Query parameter eingegeben ist der "Filter auf null"
         .exec()
         .then(docs => {
-            console.log(docs);
-            res.status(200).json(docs);
+                console.log(docs);
+                res.status(200).json(docs);
         })
         .catch(err => {
             console.log(err);
@@ -22,6 +24,7 @@ router.get("/", (req, res, next) => {
                 error: err
             });
         });
+
 });
 
 //erstelle ein Projekt
@@ -63,24 +66,6 @@ router.post("/", (req, res, next) => {
             });
         });
 });
-
-// Liste von Projekten basierend auf dem Suchbegriff und Tags anzeigen                // Unklar???
-/*
-router.get("?{searchword}&{tags}", (req, res, next) => {
-
-    Project.find()
-        .exec()
-        .then(docs => {
-            console.log(docs);
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-});*/
 
 //Erhalte bestimmtes Projekt
 router.get("/:projectId", (req, res, next) => {

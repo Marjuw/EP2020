@@ -9,7 +9,10 @@ const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
 //Erhalte alle User                                //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
 router.get("/", (req, res, next) => {
-    User.find()
+
+    const query = req.query; // Falls Qury parameter angegeben werden wird gefiltert
+
+    User.find(query)  // Direkt mit Query da wenn keine Query parameter eingegeben ist der "Filter auf null"
         .exec()
         .then(docs => {
             console.log(docs);
@@ -62,24 +65,6 @@ router.post("/", (req, res, next) => {
             });
         });
 });
-
-// Liste von Nutzern basierend auf dem Suchbegriff und Tags anzeigen                // Unklar???
-/*
-router.get("?{searchword}&{tags}", (req, res, next) => {
-    User.find()
-        .exec()
-        .then(docs => {
-            console.log(docs);
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
-});
-*/
 
 //Erhalte bestimmten User
 router.get("/:userId", (req, res, next) => {
