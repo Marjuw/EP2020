@@ -21,7 +21,9 @@ const userSchema = mongoose.Schema({
     kommunikation: String,
     email: {type: String, required: true},
     passwort: {type: String, required: true},
-    tags_abonniert: [Number]
+    tags_abonniert: [Number],
+    chats: [Number],
+    chat_anfragen: [Number],
 
 });
 
