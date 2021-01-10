@@ -6,8 +6,7 @@ const request = require("request");
 const Project = require("../models/project");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
-
-//Erhalte alle Proejkte                                //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
+//Erhalte alle Proejkte       //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
 router.get("/", (req, res, next) => {
 
     const query = req.query;   // Falls Qury parameter angegeben werden wird gefiltert

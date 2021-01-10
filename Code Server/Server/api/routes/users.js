@@ -7,7 +7,7 @@ const request = require("request");
 const User = require("../models/user");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
-//Erhalte alle User                                //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
+//Erhalte alle User      //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
 router.get("/", (req, res, next) => {
 
     const query = req.query; // Falls Qury parameter angegeben werden wird gefiltert
