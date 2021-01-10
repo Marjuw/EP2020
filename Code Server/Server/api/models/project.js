@@ -4,7 +4,7 @@ const projectSchema = mongoose.Schema({
 
 
     _id: mongoose.Schema.Types.ObjectId,
-    projektleiter: {type: String, required: true} ,   //Hier soll die UserID automatisch eingetragen werden
+    projektleiter: {type: Number, required: true} ,   //Hier soll die UserID automatisch eingetragen werden
     name: {type: String, required: true},
     gewuenschteTeamgroesse: Number,
     gewuenschteRollen: String,
