@@ -3,6 +3,10 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const request = require("request");
 
+const { v4: uuidv4 } = require('uuid');
+
+
+
 
 const User = require("../models/user");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
@@ -31,7 +35,7 @@ router.post("/", (req, res, next) => {
 
     const user = new User({
 
-        _id: new mongoose.Types.ObjectId(),
+        _id: uuidv4(),
         nickname: req.body.nickname,
         vorname: req.body.vorname,
         vorname_sichtbar: req.body.vorname_sichtbar,
@@ -46,7 +50,9 @@ router.post("/", (req, res, next) => {
         beschreibung: req.body.beschreibung,
         interessen: req.body.interessen,
         faehigkeiten: req.body.faehigkeiten,
-        kommunikation: req.body.kommunikation
+        kommunikation: req.body.kommunikation,
+        email: req.body.email,
+        passwort: req.body.passwort
 
     });
 

@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const request = require("request");
 
+const { v4: uuidv4 } = require('uuid');
+
 const Project = require("../models/project");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
@@ -31,7 +33,7 @@ router.post("/", (req, res, next) => {
 
     const project = new Project({
 
-        _id: new mongoose.Types.ObjectId(),
+        _id: uuidv4(),
         projektleiter: req.body.projektleiter,
         name: req.body.name,
         gewuenschteTeamgroesse: req.body.gewuenschteTeamgroesse,
@@ -40,13 +42,18 @@ router.post("/", (req, res, next) => {
         kategorie: req.body.kategorie,
         ausfuehrungsort: req.body.ausfuehrungsort,
         ausfuehrungsort_sichtbar: req.body.ausfuehrungsort_sichtbar,
+        plz: req.body.plz,
+        plz_sichtbar: req.body.plz_sichtbar,
+        ort: req.body.ort,
+        ort_sichtbar: req.body.ort_sichtbar,
         zweck: req.body.zweck,
         startzeitpunkt: req.body.startzeitpunkt,
         dauer: req.body.dauer,
         anforderung: req.body.anforderung,
         aktuelleTeilnehmerzahl: req.body.aktuelleTeilnehmerzahl,
         teilnehmer: req.body.teilnehmer,
-        teilnehmer_sichtbar: req.body.teilnehmer_sichtbar
+        teilnehmer_sichtbar: req.body.teilnehmer_sichtbar,
+        avatarPicture: req.body.avatarPicture
 
     });
 

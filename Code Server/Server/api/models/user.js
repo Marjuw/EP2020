@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
 
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: String,
     nickname: {type: String, required: true},
     vorname: String,
     vorname_sichtbar: Boolean, //wenn true dann nicht nur innerhalb des eigenen Profils und Teams sondern auch global sichtbar
