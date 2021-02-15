@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item   android:title="Home"
+            android:icon="@drawable/ic_home"
+            android:id="@+id/firstFragment"/>
+    <item   android:title="Search"
+            android:icon="@drawable/ic_search"
+            android:id="@+id/secondFragment"/>
+    <item   android:title="Chat"
+            android:icon="@drawable/ic_chat"
+            android:id="@+id/thirdFragment"/>
+    <item   android:title="Teams"
+            android:icon="@drawable/ic_team"
+            android:id="@+id/fourthFragment"/>
+    <item   android:title="Profile"
+            android:icon="@drawable/ic_person"
+            android:id="@+id/fithFragment"/>
+</menu>

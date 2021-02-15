@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foregroundTint="#000000"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <!-- android:background="@color/maingreen"  -->
+
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!-- android:background="@color/teal_200" -->
+
+        <ImageView
+            android:id="@+id/projectpicfull"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/ic_person"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
+            <!--android:background="@color/white" -->
+
+            <TextView
+                android:id="@+id/projektnamefull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Projektname"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/projektortfull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Projektort"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" />
+    <!--  android:background="@color/white" -->
+
+    <LinearLayout
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!--    android:background="@color/teal_200" -->
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/projectbeschreibung"
+                android:layout_width="420dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="projectbewschreibung:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/projectbeschreibung_feld"
+                android:layout_width="420dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Musterbeschreibung"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_skills_anforderungen"
+                app:tint="@color/black" />
+
+
+            <TextView
+                android:id="@+id/anforrderungen_full"
+                android:layout_width="420dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Anforderungen:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/anforderungen_full_feld"
+                android:layout_width="420dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Musterprojektskills"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_category"
+                app:tint="@color/black">
+
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/projektkategoriefull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Kategorie:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/projektkategoriefull_feld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Musterkategorie:"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/projectzweck_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Zweck:"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <TextView
+                android:id="@+id/projectzweck_full_feld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Musterzweck"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="325dp"
+            android:layout_height="00dp"
+            android:orientation="horizontal">
+            <!--   android:background="@color/teal_200" -->
+
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mitglieder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Mitglieder:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider"
+            app:layout_constraintVertical_bias="0.01" />
+
+
+        <LinearLayout
+            android:id="@+id/layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beteiligteprojekte_eigen"
+            app:layout_constraintVertical_bias="0.191"
+            tools:ignore="MissingConstraints">
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/projectmitglieder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.191"
+        tools:ignore="MissingConstraints">
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="#000000"
+        android:foregroundTint="@color/black"/>
+
+
+
+</LinearLayout>
+
+
