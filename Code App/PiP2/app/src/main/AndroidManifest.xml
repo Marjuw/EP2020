@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PiP">
 
-        <activity android:name=".MainActivity" android:label="PIP"> // android:label="home" zeigt den Namen der Seite als Home an. Essei denn in der MainActivity Kotlin Datei ist der Titel angegeben (set titel). Dann wird hier nur der Appname damit bezeichnet
-
+        <activity android:name=".MainActivity" android:label="PIP">
+            <!-- android:label="home" zeigt den Namen der Seite als Home an. Essei denn in der MainActivity Kotlin Datei ist der Titel angegeben (set titel). Dann wird hier nur der Appname damit bezeichnet-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
