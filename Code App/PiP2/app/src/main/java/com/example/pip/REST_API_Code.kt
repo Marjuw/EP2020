@@ -1,3 +1,5 @@
+package com.example.pip
+
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import okhttp3.*
@@ -5,6 +7,13 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 import java.util.*
+
+val gson = GsonBuilder().create()
+val ressource_users = "/users/"
+val ressource_projects = "/projects/"
+val specificUserID = "eb5e03b4-15bc-4bb4-8450-73448265ca2a" // die ID eines spezifischen User wird hier gespeichert
+val specificProjectID = "fd873e82-c76f-4568-8225-fed46dc21289" // die ID eines spezifischen Projects wird hier gespeichert
+
 
 fun main() {
     val gson = GsonBuilder().create()
@@ -64,9 +73,9 @@ fun main() {
 
     // Projekt seifenkiste wird mit Daten gefüllt und dann via POST Request versendet
     var seifenkiste: One_Project = One_Project(projektleiter = 221, name = "Seifenkisten bauen Teil 2!", gewuenschteTeamgroesse = 3,
-            gewuenschteRollen = "Handwerker, Bastler",
-            beschreibung = "Hallo, wir wollen eine Seifenkiste für die Kinder aus der Nachbarschaft bauen und brauchen dabei deine Hilfe!",
-            kategorie = listOf(1,2,3), ausfuehrungsort = "Köln", zweck = listOf(1, 3), teilnehmer = listOf(2, 82) )
+        gewuenschteRollen = "Handwerker, Bastler",
+        beschreibung = "Hallo, wir wollen eine Seifenkiste für die Kinder aus der Nachbarschaft bauen und brauchen dabei deine Hilfe!",
+        kategorie = listOf(1,2,3), ausfuehrungsort = "Köln", zweck = listOf(1, 3), teilnehmer = listOf(2, 82) )
     val jsonProjectObject = gson.toJson(seifenkiste) // das One_Project Objekt wird in einen JSON String geparset
     okHttpPost(ressource_projects, json = jsonProjectObject) // der User wird gepostet
 
@@ -93,21 +102,16 @@ fun main() {
 fun okHttpGet(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
     val client: OkHttpClient = OkHttpClient()
     val BASE_URL = "http://localhost:3000"
-    val json = "{\"id\":1,\"name\":\"John\"}";
-
-    val body: RequestBody = json.toRequestBody(//        MediaType.parse("application/json"), json)
-            "application/json".toMediaTypeOrNull()
-    )
 
     val request: Request = Request.Builder()
-            .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
-            .build()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .build()
 
     client.newCall(request).execute().use { response ->
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("Response HTTP Code: "+response.code)
+        println("HTTP Code Response für HTTP-GET: "+response.code)
         return resJson
     }
 }
@@ -118,8 +122,8 @@ fun okHttpGetAsync(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
     var resJson : String = ""
 
     val request: Request = Request.Builder()
-            .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
-            .build()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .build()
 
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
@@ -130,10 +134,8 @@ fun okHttpGetAsync(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
             response.use {
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-//                println(response.body!!.string())
-
                 resJson = response.body!!.string()
-                println("Response HTTP Code: "+response.code)
+                println("HTTP Code Response für HTTP-GET-Async: "+response.code)
             }
         }
     })
@@ -144,44 +146,106 @@ fun okHttpPost(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) 
     val client: OkHttpClient = OkHttpClient()
     val BASE_URL = "http://localhost:3000"
 
-    val body: RequestBody = json.toRequestBody(//        MediaType.parse("application/json"), json)
-            "application/json".toMediaTypeOrNull()
+    val body: RequestBody = json.toRequestBody(
+        "application/json".toMediaTypeOrNull()
     )
 
     val request: Request = Request.Builder()
-            .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
-            .post(body)
-            .build()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .post(body)
+        .build()
 
     client.newCall(request).execute().use { response ->
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("Response HTTP Code: "+response.code)
+        println("HTTP Code Response für HTTP-POST "+response.code)
         return resJson
     }
+}
+
+fun okHttpPostAsync(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) : String {
+    val client: OkHttpClient = OkHttpClient()
+    val BASE_URL = "http://localhost:3000"
+    var resJson : String = ""
+
+    val body: RequestBody = json.toRequestBody(
+        "application/json".toMediaTypeOrNull()
+    )
+
+    val request: Request = Request.Builder()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .post(body)
+        .build()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            e.printStackTrace()
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            response.use {
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                resJson = response.body!!.string()
+                println("HTTP Code Response für HTTP-POST-Async: "+response.code)
+            }
+        }
+    })
+    return resJson
 }
 
 fun okHttpPut(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) : String {
     val client: OkHttpClient = OkHttpClient()
     val BASE_URL = "http://localhost:3000"
 
-    val body: RequestBody = json.toRequestBody(//        MediaType.parse("application/json"), json)
-            "application/json".toMediaTypeOrNull()
+    val body: RequestBody = json.toRequestBody(
+        "application/json".toMediaTypeOrNull()
     )
 
     val request: Request = Request.Builder()
-            .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
-            .put(body)
-            .build()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .put(body)
+        .build()
 
     client.newCall(request).execute().use { response ->
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("Response HTTP Code: "+response.code)
+        println("HTTP Code Response für HTTP-PUT: "+response.code)
         return resJson
     }
+}
+
+fun okHttpPutAsync(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) : String {
+    val client: OkHttpClient = OkHttpClient()
+    val BASE_URL = "http://localhost:3000"
+    var resJson : String = ""
+
+    val body: RequestBody = json.toRequestBody(
+        "application/json".toMediaTypeOrNull()
+    )
+
+    val request: Request = Request.Builder()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .put(body)
+        .build()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            e.printStackTrace()
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            response.use {
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                resJson = response.body!!.string()
+                println("HTTP Code Response für HTTP-PUT-Async: "+response.code)
+            }
+        }
+    })
+    return resJson
 }
 
 fun okHttpDelete(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
@@ -189,18 +253,45 @@ fun okHttpDelete(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
     val BASE_URL = "http://localhost:3000"
 
     val request: Request = Request.Builder()
-            .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
-            .delete()
-            .build()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .delete()
+        .build()
 
     client.newCall(request).execute().use { response ->
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("Response HTTP Code: "+response.code)
+        println("HTTP Code Response für HTTP-DELETE: "+response.code)
         println("Delete Body: "+resJson)
         return resJson
     }
+}
+
+fun okHttpDeleteAsync(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
+    val client: OkHttpClient = OkHttpClient()
+    val BASE_URL = "http://localhost:3000"
+    var resJson : String = ""
+
+    val request: Request = Request.Builder()
+        .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
+        .delete()
+        .build()
+
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            e.printStackTrace()
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            response.use {
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                resJson = response.body!!.string()
+                println("HTTP Code Response für HTTP-DELETE-Async: "+response.code)
+            }
+        }
+    })
+    return resJson
 }
 
 data class One_User(val _id: String? = null,
