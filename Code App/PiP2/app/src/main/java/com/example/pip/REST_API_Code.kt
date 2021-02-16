@@ -1,5 +1,6 @@
 package com.example.pip
 
+import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import okhttp3.*
@@ -111,7 +112,7 @@ fun okHttpGet(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("HTTP Code Response für HTTP-GET: "+response.code)
+        Log.d("HTTP-Request","HTTP Code Response für HTTP-GET: "+response.code)
         return resJson
     }
 }
@@ -135,7 +136,7 @@ fun okHttpGetAsync(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 resJson = response.body!!.string()
-                println("HTTP Code Response für HTTP-GET-Async: "+response.code)
+                Log.d("HTTP-Request","HTTP Code Response für HTTP-GET-Async: "+response.code)
             }
         }
     })
@@ -159,7 +160,7 @@ fun okHttpPost(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) 
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("HTTP Code Response für HTTP-POST "+response.code)
+        Log.d("HTTP-Request","HTTP Code Response für HTTP-POST: "+response.code)
         return resJson
     }
 }
@@ -188,7 +189,7 @@ fun okHttpPostAsync(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : Str
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 resJson = response.body!!.string()
-                println("HTTP Code Response für HTTP-POST-Async: "+response.code)
+                Log.d("HTTP-Request","HTTP Code Response für HTTP-POST-Async: "+response.code)
             }
         }
     })
@@ -212,7 +213,7 @@ fun okHttpPut(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) :
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("HTTP Code Response für HTTP-PUT: "+response.code)
+        Log.d("HTTP-Request","HTTP Code Response für HTTP-PUT: "+response.code)
         return resJson
     }
 }
@@ -241,7 +242,7 @@ fun okHttpPutAsync(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : Stri
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 resJson = response.body!!.string()
-                println("HTTP Code Response für HTTP-PUT-Async: "+response.code)
+                Log.d("HTTP-Request","HTTP Code Response für HTTP-PUT-Async: "+response.code)
             }
         }
     })
@@ -261,7 +262,7 @@ fun okHttpDelete(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
         if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
         val resJson = response.body!!.string()
-        println("HTTP Code Response für HTTP-DELETE: "+response.code)
+        Log.d("HTTP-Request","HTTP Code Response für HTTP-DELETE: "+response.code)
         println("Delete Body: "+resJson)
         return resJson
     }
@@ -287,7 +288,7 @@ fun okHttpDeleteAsync(URL_RESSOURCE : String, URL_DETAILS : String?= "") : Strin
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 resJson = response.body!!.string()
-                println("HTTP Code Response für HTTP-DELETE-Async: "+response.code)
+                Log.d("HTTP-Request","HTTP Code Response für HTTP-DELETE-Async: "+response.code)
             }
         }
     })
