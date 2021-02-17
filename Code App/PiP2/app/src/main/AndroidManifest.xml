@@ -10,7 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PiP">
+        android:theme="@style/Theme.PiP"
+        android:usesCleartextTraffic="true"
+        >
+
 
         <activity android:name=".MainActivity" android:label="PIP">
             <!-- android:label="home" zeigt den Namen der Seite als Home an. Essei denn in der MainActivity Kotlin Datei ist der Titel angegeben (set titel). Dann wird hier nur der Appname damit bezeichnet-->
