@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,17 +13,250 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/suche_seite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="SecondFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="Suche"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar">
+
+
+                <EditText
+                    android:id="@+id/sucheingabe"
+                    android:layout_width="375dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Sucheingabe"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/fähigkeiten_eingabe"
+                    android:layout_width="270dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Musterfähigkeiten"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.909"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/projekt_button"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <EditText
+                    android:id="@+id/interessen_eingabe"
+                    android:layout_width="270dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Musterinteressen"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.909"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fähigkeiten_eingabe"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/suchenach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="306dp"
+                    android:text="Suche nach:"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.608"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sucheingabe" />
+
+                <TextView
+                    android:id="@+id/fähigkeiten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="306dp"
+                    android:text="Fähigkeiten:"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.608"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/suchenach" />
+
+                <TextView
+                    android:id="@+id/interessen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="22dp"
+                    android:text="Interessen"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/interessen_eingabe"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fähigkeiten" />
+
+                <TextView
+                    android:id="@+id/ort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Ort"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/inperson_button"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/interessen" />
+
+                <Button
+                    android:id="@+id/projekt_button"
+                    android:layout_width="130dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="186dp"
+                    android:background="@drawable/rounded_corner_grey"
+                    android:text="Projekt"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.375"
+                    app:layout_constraintStart_toEndOf="@+id/suchenach"
+                    app:layout_constraintTop_toBottomOf="@+id/sucheingabe" />
+
+                <Button
+                    android:id="@+id/inperson_button"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="186dp"
+                    android:background="@drawable/rounded_corner_grey"
+                    android:text="In Person"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.354"
+                    app:layout_constraintStart_toEndOf="@+id/suchenach"
+                    app:layout_constraintTop_toBottomOf="@+id/interessen_eingabe" />
+
+                <Button
+                    android:id="@+id/person_button"
+                    android:layout_width="130dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Person"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.852"
+                    app:layout_constraintStart_toEndOf="@+id/suchenach"
+                    app:layout_constraintTop_toBottomOf="@+id/sucheingabe" />
+
+                <Button
+                    android:id="@+id/online_button"
+                    android:layout_width="130dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Online"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.862"
+                    app:layout_constraintStart_toEndOf="@+id/suchenach"
+                    app:layout_constraintTop_toBottomOf="@+id/interessen_eingabe" />
+
+                <Button
+                    android:id="@+id/suchen_button"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_corner_green"
+                    android:text="Suchen"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inperson_button" />
+
+                <Button
+                    android:id="@+id/zurücksetzen_button"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_corner_grey"
+                    android:text="Zurücksetzen"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.545"
+                    app:layout_constraintStart_toEndOf="@+id/suchen_button"
+                    app:layout_constraintTop_toBottomOf="@+id/online_button" />
+
+
+                <LinearLayout
+                    android:id="@+id/suchresultat_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@+id/suchen_button"
+                    android:layout_marginTop="10dp"
+                    tools:ignore="MissingConstraints">
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

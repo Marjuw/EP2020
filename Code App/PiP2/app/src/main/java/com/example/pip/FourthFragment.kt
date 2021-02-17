@@ -1,6 +1,7 @@
 package com.example.pip
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +37,8 @@ class FourthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.d("sdsdsd","sdfff")
 
         // Inflate the layout for this fragment
         var v: View= inflater.inflate(com.example.pip.R.layout.activity_teams, container, false)

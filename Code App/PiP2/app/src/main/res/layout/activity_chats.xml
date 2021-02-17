@@ -10,20 +10,20 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/chats_seite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="316dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="396dp"
-        android:text="ThirdFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
+        android:text="Chats"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +39,36 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_search, container, false)
+        var v: View= inflater.inflate(com.example.pip.R.layout.activity_search, container, false)
+
+
+        var showprojects: Button = v.findViewById(com.example.pip.R.id.suchen_button)   //Projekte dynamisch anzeigen lassen
+        var scrollbar: LinearLayout =v.findViewById(com.example.pip.R.id.suchresultat_layout)
+
+        showprojects.setOnClickListener(  View.OnClickListener {
+
+            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
+
+            scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
+
+
+
+        })
+
+        var clearsearch: Button = v.findViewById(com.example.pip.R.id.zurücksetzen_button)   //Projektesuche & Einstellungen zurücksetzen lassen
+
+        clearsearch.setOnClickListener(  View.OnClickListener {
+
+            scrollbar.removeAllViews()  //Suchresultate löschen
+
+            var fähigkeiten: EditText = v.findViewById(com.example.pip.R.id.fähigkeiten_eingabe) //Hier z.b Fähigkeiten zurücksetzen
+            fähigkeiten.setText("Musterfähigkeiten")
+
+
+
+        })
+
+    return v
     }
 
     companion object {
