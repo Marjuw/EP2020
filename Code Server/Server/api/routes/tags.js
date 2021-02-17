@@ -6,9 +6,7 @@ const request = require("request");
 const { v4: uuidv4 } = require('uuid');
 
 
-
-
-const Tags = require("../models/tags");
+const Tag = require("../models/tag");
 const { ResourceNotFoundError, InternalError } = require('./errors.js');
 
 //Erhalte alle Tags      //Brauchen wir  zum überprüfen (als programmierer) => Noch in Rest hinzufügen
@@ -16,7 +14,7 @@ router.get("/", (req, res, next) => {
 
     const query = req.query; // Falls Qury parameter angegeben werden wird gefiltert
 
-    User.find(query)  // Direkt mit Query da wenn keine Query parameter eingegeben ist der "Filter auf null"
+    Tag.find(query)  // Direkt mit Query da wenn keine Query parameter eingegeben ist der "Filter auf null"
         .exec()
         .then(docs => {
             console.log(docs);
@@ -35,10 +33,10 @@ router.post("/", (req, res, next) => {
 
     const tag = new Tag({
 
-       // _id: uuidv4(),
+        _id: new mongoose.Types.ObjectId(),
         bezeichnung: req.body.bezeichnung,
         typ: req.body.typ
-        
+
     });
 
     tag.save()
@@ -61,7 +59,7 @@ router.post("/", (req, res, next) => {
 router.get("/:tagId", (req, res, next) => {
 
     const id = req.params.tagId;
-    User.findById(id)
+    Tag.findById(id)
         .exec()
         .then(doc => {
             console.log("From database", doc);
@@ -84,7 +82,7 @@ router.get("/:tagId", (req, res, next) => {
 router.delete("/:tagId", (req, res, next) => {
 
     const id = req.params.tagId;
-    User.remove({_id: id})
+    Tag.remove({_id: id})
     //Hier muss noch hin was mit dem Projekt passiert, wenn dieser Tag eins erstellt hat
         .exec()
         .then(result => {
@@ -130,7 +128,7 @@ router.put("/:tagId", (req, res, next) => {
    // for (const ops of req.body) {
    //     updateOps[ops.propName] = ops.value;
    // }
-    User.update({ _id: id }, { $set: req.body })
+    Tag.update({ _id: id }, { $set: req.body })
         .exec()
         .then(result => {
             console.log(result);

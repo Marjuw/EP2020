@@ -7,4 +7,4 @@ const tagSchema = mongoose.Schema({
     typ: {type: String, required: true}  // Kategorie, Skills/Anforderungen, Kommunikation, Zweck als Tag
 });
 
-module.exports = mongoose.model('tag', tagSchema);
+module.exports = mongoose.model('Tag', tagSchema);
