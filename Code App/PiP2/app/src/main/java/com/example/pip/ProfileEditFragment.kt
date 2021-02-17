@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.FragmentTransaction
+import com.example.REST_API_Client.*
 
 
 // TODO: Rename parameter arguments, choose names that match

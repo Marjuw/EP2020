@@ -2,12 +2,14 @@ package com.example.pip
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.REST_API_Client.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,8 +49,42 @@ class FiveFragment : Fragment() {
     ): View? {
 
 
+        var main: MainActivity = MainActivity()
+        main.loggedinUserID
+
         // Inflate the layout for this fragment
         var v: View= inflater.inflate(com.example.pip.R.layout.activity_profile, container, false)
+
+
+        // Einen GET auf einen spezifischen Nutzer ausführen und den Nicknamen ausgeben
+        val getSpecificUserString = okHttpGet(ressource_users ,main.loggedinUserID) // hole den JSON String vom spezifischen User aus der Ressource Users
+        val loggedinUser = gson.fromJson(getSpecificUserString, One_User::class.java) // speichere den User in eine Variable vom Typ One_User
+
+        //Ab hier alle Profildaten den Mustereinträgen überschreiben
+        var nicknameProfil :TextView =  v.findViewById(R.id.nickname_eigen_feld)   // nickname Textfeld identifizieren
+        nicknameProfil.setText(loggedinUser.nickname)  //Mustereintrag von Nickname zu dem Eintrag von Nickname der Get Anfrage überschreiben
+
+        var nameProfil :TextView =  v.findViewById(R.id.name_eigen_feld)
+        nameProfil.setText(loggedinUser.vorname)
+
+        var nachnameProfil :TextView =  v.findViewById(R.id.nachname_eigen_feld)
+        nachnameProfil.setText(loggedinUser.name)
+
+        var beschreibungProfil :TextView =  v.findViewById(R.id.beschreibung_eigen_feld)
+        beschreibungProfil.setText(loggedinUser.beschreibung)
+
+        var kommunikationProfil :TextView =  v.findViewById(R.id.kommunikation_eigen_feld)
+        kommunikationProfil.setText(loggedinUser.kommunikation)
+
+
+
+
+
+
+
+
+
+
 
 
         var edit:ImageView= v.findViewById(com.example.pip.R.id.editicon)   //Beim klicken auf Edit wird das Layout gewechselt, damit man Text editieren kann
@@ -108,7 +144,6 @@ class FiveFragment : Fragment() {
 
 
     }
-
 
 
     companion object {

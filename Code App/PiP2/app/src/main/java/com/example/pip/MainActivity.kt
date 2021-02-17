@@ -17,12 +17,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.REST_API_Client.*
 
 
 
 class MainActivity : AppCompatActivity() {
 
+    var loggedinUserID: String="a87c4718-4004-4851-92f6-081c87aa4643"  //BeispielID zum durchführen der Anfragen, da wir kein Login haben. Dies ist der Login ersatz, da wir die ID ständig vergleichen
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
 
 
         super.onCreate(savedInstanceState)
