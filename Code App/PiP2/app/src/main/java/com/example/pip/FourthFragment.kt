@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.REST_API_Client.*
+import com.google.gson.GsonBuilder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -138,6 +140,60 @@ class FourthFragment : Fragment() {
 
 
         })
+
+
+
+//        val loeschNutzer = "93c6863e-97d2-4783-a05a-91326f51e3b4"
+//        okHttpDelete(ressource_users, loeschNutzer)
+//        Log.d("HTTP-Request", "Und Weg ist der Nutzer mit der ID: $loeschNutzer")
+
+        // Liste aller Nutzer holen und als String speichern
+        val getListOfUsersString = okHttpGet(ressource_users)
+
+        // Wert der die Liste aller User in einem Array vom Typ One_User enthält
+        val userListe: List<One_User> = gson.fromJson(getListOfUsersString, Array<One_User>::class.java).toList()
+
+        // Ausgabe aller Nutzer mit Nicknamen
+        Log.d("HTTP-Request", "Liste aller Nutzer:")
+        for (user in userListe) {
+            Log.d("HTTP-Request","Nickname: ${user.nickname}")
+        }
+
+        // Einen GET auf einen spezifischen Nutzer ausführen und den Nicknamen ausgeben
+        val getSpecificUserString = okHttpGet(ressource_users ,specificUserID) // hole den JSON String vom spezifischen User aus der Ressource Users
+        val specific_user = gson.fromJson(getSpecificUserString, One_User::class.java) // speichere den User in eine Variable vom Typ One_User
+        Log.d("HTTP-Request", "Der gewünschte User ist unter dem Nicknamen \"${specific_user.nickname}\" zu finden.")
+
+        Log.d("HTTP-Request", "Inhalt des Gets: $getSpecificUserString")
+        Log.d("HTTP-Request", "NACH DEM STRING")
+
+        val zweiterTeilnehmer = "c362ae9d-26ab-4115-9e1a-53706e558ec6"
+        val ersterTeilnehmer = specificUserID
+        var seifenkiste: One_Project = One_Project(
+                projektleiter = specificUserID,
+                name = "Seifenkisten bauen Teil 2!",
+                gewuenschteTeamgroesse = 3,
+                gewuenschteRollen = "Handwerker, Bastler",
+                beschreibung = "Hallo, wir wollen eine Seifenkiste für die Kinder aus der Nachbarschaft bauen und brauchen dabei deine Hilfe!",
+                kategorie = listOf(1, 2, 3),
+                ausfuehrungsort = "Köln",
+                zweck = listOf(1, 3),
+                teilnehmer = listOf(ersterTeilnehmer, zweiterTeilnehmer)
+        )
+
+        // Projekt seifenkiste wird mit Daten gefüllt und dann via POST Request versendet
+        Log.d("HTTP-wichtig-Response", "Vor dem JSON Parsen")
+        val jsonProjectObject = gson.toJson(seifenkiste) // das One_Project Objekt wird in einen JSON String geparset
+        Log.d("HTTP-wichtig-Response", jsonProjectObject)
+        okHttpPost(ressource_projects, json = jsonProjectObject) // das Projekt wird gepostet
+        Log.d("HTTP-wichtig-Response", "nach dem Post")
+
+
+//        var einstein: One_User = One_User(nickname = "MC^2", vorname = "Albert", name = "Einstein" ,interessen = listOf(1,2,3), faehigkeiten = listOf(101,102,103), email = "mathe@genius.com", passwort = "relativEinfach" )
+//        val jsonUserObject = gson.toJson(einstein) // das One_User Objekt wird in einen JSON String geparset
+//        okHttpPost(ressource_users, json = jsonUserObject) // der User wird gepostet
+
+
 
         return v
     }
