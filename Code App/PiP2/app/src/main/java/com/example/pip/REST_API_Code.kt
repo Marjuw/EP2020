@@ -14,6 +14,7 @@ import java.util.*
 val gson = GsonBuilder().create() // zum parsen von JSON nach Objekten und umgekehrt benötigt
 val ressource_users = "/users/"
 val ressource_projects = "/projects/"
+val ressource_tags = "/tags/"
 val androidURL = "http://10.0.2.2:3000" // Adresse der Bridge zum Host-System der Android Simulation, benötigt damit Android den Server korrekt adressiert
 val desktopURL = "http://localhost:3000" // Localhost wird für die Ausführung am Rechner verwendet
 val BASE_URL = androidURL // hier wird die BASE_URL aus einem der oberen Werte übernommen
@@ -256,4 +257,10 @@ data class One_Project(val _id: String? = null,
                        @SerializedName ("teilnehmer") val teilnehmer: List<String>,
                        @SerializedName ("teilnehmer_sichtbar") val teilnehmer_sichtbar: Boolean? = null,
                        @SerializedName ("avatarPicture") val avatarPicture: String? = null,
+                       @SerializedName ("__v") val __v: Int? = null)
+
+data class One_Tag(
+                       @SerializedName ("_id") val id: Int,
+                       @SerializedName ("bezeichnung") val bezeichnung: String,
+                       @SerializedName ("typ") val typ: String,
                        @SerializedName ("__v") val __v: Int? = null)
