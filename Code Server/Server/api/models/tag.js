@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const tagSchema = mongoose.Schema({
 
-    //_id: Number,
-    _id: mongoose.Schema.Types.ObjectId,
+    _id: Number,
+//     _id: mongoose.Schema.Types.ObjectId,
     bezeichnung: {type: String, required: true},
     typ: {type: String, required: true}  // Kategorie, Skills/Anforderungen, Kommunikation, Zweck als Tag
 });
