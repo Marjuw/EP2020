@@ -76,11 +76,30 @@ class FiveFragment : Fragment() {
         var kommunikationProfil :TextView =  v.findViewById(R.id.kommunikation_eigen_feld)
         kommunikationProfil.setText(loggedinUser.kommunikation)
 
+        var interessenString = ""
+        var faehigkeitenString = ""
 
+        for (x in loggedinUser.interessen){
+            Log.d("HTTP-Request", x.toString())
+            for (y in main.tagListe){
+                if ((y.id == x) && x == loggedinUser.interessen.last()) interessenString += y.bezeichnung
+                else if (y.id == x) interessenString += "${y.bezeichnung}, "
+            }
+        }
 
+        for (x in loggedinUser.faehigkeiten){
+            Log.d("HTTP-Request", x.toString())
+            for (y in main.tagListe){
+                if ((y.id == x) && x == loggedinUser.faehigkeiten.last()) faehigkeitenString += y.bezeichnung
+                else if (y.id == x) faehigkeitenString += "${y.bezeichnung}, "
+            }
+        }
 
+        var interessenProfil :TextView =  v.findViewById(R.id.interessen_eigen_feld)
+        interessenProfil.setText(interessenString)
 
-
+        var faehigkeitenProfil :TextView =  v.findViewById(R.id.fäghigkeiten_eigen_feld)
+        faehigkeitenProfil.setText(faehigkeitenString)
 
 
 
