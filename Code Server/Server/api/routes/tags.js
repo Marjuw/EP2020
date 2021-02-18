@@ -33,7 +33,8 @@ router.post("/", (req, res, next) => {
 
     const tag = new Tag({
 
-        _id: new mongoose.Types.ObjectId(),
+//         _id: new mongoose.Types.ObjectId(),
+        _id: req.body.id,
         bezeichnung: req.body.bezeichnung,
         typ: req.body.typ
 
