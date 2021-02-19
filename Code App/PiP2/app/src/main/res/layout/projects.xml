@@ -52,7 +52,7 @@
 
     <LinearLayout
         android:layout_width="370dp"
-        android:layout_height="61dp"
+        android:layout_height="100dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
         <!--  android:background="@color/white" -->
@@ -112,7 +112,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/openproject"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="7dp"

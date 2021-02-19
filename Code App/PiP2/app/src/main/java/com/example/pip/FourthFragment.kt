@@ -46,7 +46,7 @@ class FourthFragment : Fragment() {
         var v: View= inflater.inflate(com.example.pip.R.layout.activity_teams, container, false)
 
         var showprojects: TextView = v.findViewById(com.example.pip.R.id.my_projects)   //Button Projekte dynamisch anzeigen lassen
-        var projectslayout: LinearLayout =v.findViewById(com.example.pip.R.id.projects)  //Um Layout für Projekte anzusprechen
+        var projectslayout: LinearLayout =v.findViewById(com.example.pip.R.id.projects_layout)  //Um Layout für Projekte anzusprechen
 //      var projectmitgliederlayout: LinearLayout= v.findViewById(com.example.pip.R.id.projectmitglieder)  //Um Layout für Mitglieder anzusprechen
 
         showprojects.setOnClickListener(  View.OnClickListener {
@@ -140,6 +140,106 @@ class FourthFragment : Fragment() {
 
 
         })
+
+
+        val main: MainActivity = MainActivity()
+
+        // Liste aller Projekte holen und als String speichern
+        val getListOfProjectsString = okHttpGet(ressource_projects)
+
+        // Wert der die Liste aller Projekte in einem Array vom Typ One_Project enthält
+        val projectListe: List<One_Project> = gson.fromJson(getListOfProjectsString, Array<One_Project>::class.java).toList()
+
+        var loggedinUserProjektListe = mutableListOf<One_Project>()
+        for (projekt in projectListe){
+            if (projekt.teilnehmer.contains(main.loggedinUserID)) loggedinUserProjektListe.add(projekt)
+        }
+
+        //Projekte dynamisch anzeigen lassen
+        var scrollbar: LinearLayout=v.findViewById(com.example.pip.R.id.projects_layout)
+
+        for(projekt in loggedinUserProjektListe) {
+
+            var projektListenAnforderungenString = mutableListOf<String>()
+            projekt.anforderung?.forEach { x ->
+                main.tagListe?.forEach { y -> if (y.id == x) projektListenAnforderungenString.add(y.bezeichnung) }
+            }
+
+            var projektListenKategorieString = mutableListOf<String>()
+            projekt.kategorie.forEach { x ->
+                main.tagListe?.forEach { y -> if (y.id == x) projektListenKategorieString.add(y.bezeichnung) }
+            }
+
+            var projektListenZweckString = mutableListOf<String>()
+            projekt.zweck?.forEach { x ->
+                main.tagListe?.forEach { y -> if (y.id == x) projektListenZweckString.add(y.bezeichnung) }
+            }
+
+            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
+
+            var projektEintragName: TextView = projectsview.findViewById(R.id.projektname)
+            projektEintragName.setText(projekt.name)
+
+            var projektEintragOrt: TextView = projectsview.findViewById(R.id.projektort)
+            projektEintragOrt.setText(projekt.ausfuehrungsort)
+
+            var projektEintragSkills: TextView = projectsview.findViewById(R.id.projektskills)
+            projektEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+
+            var projektEintragKategorie: TextView = projectsview.findViewById(R.id.projektkategorie)
+            projektEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+
+            // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
+            var openProjectButton : ImageView = projectsview.findViewById(R.id.openproject)
+            openProjectButton.setOnClickListener(View.OnClickListener {
+                val projektEintragID = projekt._id
+                var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
+                scrollbar.removeAllViews()
+
+                var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
+                projektDetailEintragName.setText(projekt.name)
+
+                var projektDetailEintragBeschreibung: TextView = fullprojectsview.findViewById(R.id.projectbeschreibung_feld)
+                projektDetailEintragBeschreibung.setText(projekt.beschreibung)
+
+                var projektDetailEintragOrt: TextView = fullprojectsview.findViewById(R.id.projektortfull)
+                projektDetailEintragOrt.setText(projekt.ausfuehrungsort)
+
+                var projektDetailEintragSkills: TextView = fullprojectsview.findViewById(R.id.anforderungen_full_feld)
+                projektDetailEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+
+                var projektDetailEintragKategorie: TextView = fullprojectsview.findViewById(R.id.projektkategoriefull_feld)
+                projektDetailEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+
+                var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feld)
+                projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
+
+                var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglieder,null, false)
+
+                for (person in projekt.teilnehmer){
+
+                    //Mitglieder dynamisch anzeigen lassen
+                    var projektfullMitglieder: LinearLayout=v.findViewById(com.example.pip.R.id.projectmitglieder)
+
+                    var projektDetailEintragMitgliederName: TextView = projektfullMitglieder.findViewById(R.id.personname)
+                    projektDetailEintragMitgliederName.setText(person)
+
+                    projektMitgliedview.addView(projektfullMitglieder)
+                }
+
+
+                scrollbar.addView(fullprojectsview)
+            })
+
+
+
+
+
+
+
+            scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
+        }
+
 
 
 

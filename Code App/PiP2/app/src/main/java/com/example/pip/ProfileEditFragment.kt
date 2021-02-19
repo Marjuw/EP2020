@@ -1,6 +1,7 @@
 package com.example.pip
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -92,17 +93,20 @@ class ProfileEditFragment : Fragment() {
          acceptedit.setOnClickListener(  View.OnClickListener {
 
 
+             Log.d("Edit", nicknameProfil.text.toString())
         // PUT Request auf den eingeloggten Nutzer machen
-//        val updatedUser: One_User = One_User(
-//                nickname = "berndy der Lockere",
-//                vorname = "Bernard",
-//                name = "Das Brot",
-//                interessen = listOf(1,2,3),
-//                faehigkeiten = listOf(101,102,103),
-//                email = "brotbackboy@hefe.com",
-//                passwort = "1234hehe" )
-//        val jsonUserObject2 = gson.toJson(updatedUser) // das One_User Objekt wird in einen JSON String geparset
-//        okHttpPut(ressource_users, main.loggedinUserID, jsonUserObject2) // der User wird gepostet
+        val updatedUser: One_User = One_User(
+                nickname = nicknameProfil.text.toString(),
+                vorname = nameProfil.text.toString(),
+                name = nachnameProfil.text.toString(),
+                beschreibung = beschreibungProfil.text.toString(),
+                kommunikation = kommunikationProfil.text.toString(),
+                interessen = loggedinUser.interessen,
+                faehigkeiten = loggedinUser.faehigkeiten,
+                email = loggedinUser.email,
+                passwort = loggedinUser.email )
+        val jsonUserPut = gson.toJson(updatedUser) // das One_User Objekt wird in einen JSON String geparset
+        okHttpPut(ressource_users, main.loggedinUserID, jsonUserPut) // der User wird geupdated
 
 
 

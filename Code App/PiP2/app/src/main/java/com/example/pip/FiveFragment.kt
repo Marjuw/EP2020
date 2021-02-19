@@ -50,7 +50,6 @@ class FiveFragment : Fragment() {
 
 
         val main: MainActivity = MainActivity()
-        main.loggedinUserID
 
         // Inflate the layout for this fragment
         val v: View= inflater.inflate(com.example.pip.R.layout.activity_profile, container, false)
@@ -117,23 +116,8 @@ class FiveFragment : Fragment() {
         }
 
 
-        Toast.makeText(this.context, "hallo", Toast.LENGTH_LONG).show()  //Pop Up Nachricht
+//        Toast.makeText(this.context, "hallo", Toast.LENGTH_LONG).show()  //Pop Up Nachricht
 
-
-     /*    var params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  //Text manuell in XML Dynamisch hinzufügen
-        LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        params.setMargins(900,1900,5,6);
-
-        val textView: TextView = TextView(this.context) as TextView
-        textView.setText("textbeispiel")
-        //textView.layoutParams=params
-        this.activity?.addContentView(textView,params)
-
-      */
-
-
-        Log.d("HTTP-Response", "U THERE BRO?")
 
 
         // Liste aller Projekte holen und als String speichern
@@ -147,7 +131,7 @@ class FiveFragment : Fragment() {
             if (projekt.teilnehmer.contains(main.loggedinUserID)) loggedinUserProjektListe.add(projekt)
         }
 
-           //Projekte dynamisch anzeigen lassen
+        //Projekte dynamisch anzeigen lassen
         var scrollbar: LinearLayout=v.findViewById(com.example.pip.R.id.layout_list)
 
         for(projekt in loggedinUserProjektListe) {
@@ -181,6 +165,7 @@ class FiveFragment : Fragment() {
 
             scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
         }
+
 
 
 
