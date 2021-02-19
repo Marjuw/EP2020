@@ -49,60 +49,49 @@ class FiveFragment : Fragment() {
     ): View? {
 
 
-        var main: MainActivity = MainActivity()
+        val main: MainActivity = MainActivity()
         main.loggedinUserID
 
         // Inflate the layout for this fragment
-        var v: View= inflater.inflate(com.example.pip.R.layout.activity_profile, container, false)
+        val v: View= inflater.inflate(com.example.pip.R.layout.activity_profile, container, false)
 
 
-        // Einen GET auf einen spezifischen Nutzer ausführen und den Nicknamen ausgeben
+        // Einen GET auf einen spezifischen Nutzer ausführen
         val getSpecificUserString = okHttpGet(ressource_users ,main.loggedinUserID) // hole den JSON String vom spezifischen User aus der Ressource Users
         val loggedinUser = gson.fromJson(getSpecificUserString, One_User::class.java) // speichere den User in eine Variable vom Typ One_User
 
         //Ab hier alle Profildaten den Mustereinträgen überschreiben
-        var nicknameProfil :TextView =  v.findViewById(R.id.nickname_eigen_feld)   // nickname Textfeld identifizieren
+        val nicknameProfil :TextView =  v.findViewById(R.id.nickname_eigen_feld)   // nickname Textfeld identifizieren
         nicknameProfil.setText(loggedinUser.nickname)  //Mustereintrag von Nickname zu dem Eintrag von Nickname der Get Anfrage überschreiben
 
-        var nameProfil :TextView =  v.findViewById(R.id.name_eigen_feld)
+        val nameProfil :TextView =  v.findViewById(R.id.name_eigen_feld)
         nameProfil.setText(loggedinUser.vorname)
 
-        var nachnameProfil :TextView =  v.findViewById(R.id.nachname_eigen_feld)
+        val nachnameProfil :TextView =  v.findViewById(R.id.nachname_eigen_feld)
         nachnameProfil.setText(loggedinUser.name)
 
-        var beschreibungProfil :TextView =  v.findViewById(R.id.beschreibung_eigen_feld)
+        val beschreibungProfil :TextView =  v.findViewById(R.id.beschreibung_eigen_feld)
         beschreibungProfil.setText(loggedinUser.beschreibung)
 
-        var kommunikationProfil :TextView =  v.findViewById(R.id.kommunikation_eigen_feld)
+        val kommunikationProfil :TextView =  v.findViewById(R.id.kommunikation_eigen_feld)
         kommunikationProfil.setText(loggedinUser.kommunikation)
 
-        var interessenString = ""
-        var faehigkeitenString = ""
 
-        for (x in loggedinUser.interessen){
-            Log.d("HTTP-Request", x.toString())
-            for (y in main.tagListe){
-                if ((y.id == x) && x == loggedinUser.interessen.last()) interessenString += y.bezeichnung
-                else if (y.id == x) interessenString += "${y.bezeichnung}, "
-            }
+        val interessenString = mutableListOf<String>()
+        loggedinUser.interessen.forEach { x ->
+            main.tagListe?.forEach { y -> if ( y.id == x ) interessenString.add(y.bezeichnung) }
         }
 
-        for (x in loggedinUser.faehigkeiten){
-            Log.d("HTTP-Request", x.toString())
-            for (y in main.tagListe){
-                if ((y.id == x) && x == loggedinUser.faehigkeiten.last()) faehigkeitenString += y.bezeichnung
-                else if (y.id == x) faehigkeitenString += "${y.bezeichnung}, "
-            }
+        val faehigkeitenString = mutableListOf<String>()
+        loggedinUser.faehigkeiten.forEach { x ->
+            main.tagListe?.forEach{ y -> if ( y.id == x) faehigkeitenString.add(y.bezeichnung)}
         }
 
-        var interessenProfil :TextView =  v.findViewById(R.id.interessen_eigen_feld)
-        interessenProfil.setText(interessenString)
+        val interessenProfil :TextView =  v.findViewById(R.id.interessen_eigen_feld)
+        interessenProfil.setText(interessenString.joinToString(separator = ", "))
 
-        var faehigkeitenProfil :TextView =  v.findViewById(R.id.fäghigkeiten_eigen_feld)
-        faehigkeitenProfil.setText(faehigkeitenString)
-
-
-
+        val faehigkeitenProfil :TextView =  v.findViewById(R.id.fähigkeiten_eigen_feld)
+        faehigkeitenProfil.setText(faehigkeitenString.joinToString(separator = ", "))
 
 
 
@@ -144,19 +133,55 @@ class FiveFragment : Fragment() {
       */
 
 
+        Log.d("HTTP-Response", "U THERE BRO?")
 
-        var showprojects:TextView= v.findViewById(com.example.pip.R.id.beteiligteprojekte_eigen)   //Projekte dynamisch anzeigen lassen
+
+        // Liste aller Projekte holen und als String speichern
+        val getListOfProjectsString = okHttpGet(ressource_projects)
+
+        // Wert der die Liste aller Projekte in einem Array vom Typ One_Project enthält
+        val projectListe: List<One_Project> = gson.fromJson(getListOfProjectsString, Array<One_Project>::class.java).toList()
+
+        var loggedinUserProjektListe = mutableListOf<One_Project>()
+        for (projekt in projectListe){
+            if (projekt.teilnehmer.contains(main.loggedinUserID)) loggedinUserProjektListe.add(projekt)
+        }
+
+           //Projekte dynamisch anzeigen lassen
         var scrollbar: LinearLayout=v.findViewById(com.example.pip.R.id.layout_list)
 
-        showprojects.setOnClickListener(  View.OnClickListener {
+        for(projekt in loggedinUserProjektListe) {
+
+            var projektListenAnforderungenString = mutableListOf<String>()
+            projekt.anforderung?.forEach { x ->
+                main.tagListe?.forEach { y -> if (y.id == x) projektListenAnforderungenString.add(y.bezeichnung) }
+            }
+
+            var projektListenKategorieString = mutableListOf<String>()
+            projekt.kategorie.forEach { x ->
+                main.tagListe?.forEach { y -> if (y.id == x) projektListenKategorieString.add(y.bezeichnung) }
+            }
 
             var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
 
+            var projektEintragName: TextView = projectsview.findViewById(R.id.projektname)
+            projektEintragName.setText(projekt.name)
+
+            var projektEintragOrt: TextView = projectsview.findViewById(R.id.projektort)
+            projektEintragOrt.setText(projekt.ausfuehrungsort)
+
+            var projektEintragSkills: TextView = projectsview.findViewById(R.id.projektskills)
+            projektEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+
+            var projektEintragKategorie: TextView = projectsview.findViewById(R.id.projektkategorie)
+            projektEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+
+            // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
+            val projektEintragID = projekt._id
+
             scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
+        }
 
-
-
-        })
 
 
         return v

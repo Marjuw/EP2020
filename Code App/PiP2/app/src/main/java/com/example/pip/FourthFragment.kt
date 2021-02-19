@@ -167,26 +167,26 @@ class FourthFragment : Fragment() {
         Log.d("HTTP-Request", "Inhalt des Gets: $getSpecificUserString")
         Log.d("HTTP-Request", "NACH DEM STRING")
 
-        val zweiterTeilnehmer = "c362ae9d-26ab-4115-9e1a-53706e558ec6"
+        val zweiterTeilnehmer = "a87c4718-4004-4851-92f6-081c87aa4643"
         val ersterTeilnehmer = specificUserID
         var seifenkiste: One_Project = One_Project(
                 projektleiter = specificUserID,
-                name = "Seifenkisten bauen Teil 2!",
-                gewuenschteTeamgroesse = 3,
-                gewuenschteRollen = "Handwerker, Bastler",
-                beschreibung = "Hallo, wir wollen eine Seifenkiste für die Kinder aus der Nachbarschaft bauen und brauchen dabei deine Hilfe!",
-                kategorie = listOf(1, 2, 3),
-                ausfuehrungsort = "Köln",
-                zweck = listOf(1, 3),
+                name = "Grüne Lernplatform!",
+                gewuenschteTeamgroesse = 2,
+                gewuenschteRollen = "Informatiker, Weltenverbesserer",
+                beschreibung = "Ich möchte eine grüne Lernplatform bauen auf der die Kinder sich über nachhaltige Alternativen informieren können!",
+                kategorie = listOf(102, 104),
+                ausfuehrungsort = "Berlin",
+                zweck = listOf(2, 3, 4),
                 teilnehmer = listOf(ersterTeilnehmer, zweiterTeilnehmer)
         )
 
         // Projekt seifenkiste wird mit Daten gefüllt und dann via POST Request versendet
-        Log.d("HTTP-wichtig-Response", "Vor dem JSON Parsen")
-        val jsonProjectObject = gson.toJson(seifenkiste) // das One_Project Objekt wird in einen JSON String geparset
-        Log.d("HTTP-wichtig-Response", jsonProjectObject)
-        okHttpPost(ressource_projects, json = jsonProjectObject) // das Projekt wird gepostet
-        Log.d("HTTP-wichtig-Response", "nach dem Post")
+//        Log.d("HTTP-wichtig-Response", "Vor dem JSON Parsen")
+//        val jsonProjectObject = gson.toJson(seifenkiste) // das One_Project Objekt wird in einen JSON String geparset
+//        Log.d("HTTP-wichtig-Response", jsonProjectObject)
+//        okHttpPost(ressource_projects, json = jsonProjectObject) // das Projekt wird gepostet
+//        Log.d("HTTP-wichtig-Response", "nach dem Post")
 
 
 //        var einstein: One_User = One_User(nickname = "MC^2", vorname = "Albert", name = "Einstein" ,interessen = listOf(1,2,3), faehigkeiten = listOf(101,102,103), email = "mathe@genius.com", passwort = "relativEinfach" )
