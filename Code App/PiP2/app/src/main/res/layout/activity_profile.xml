@@ -248,7 +248,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.073"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fäghigkeiten_eigen_feld" />
+                    app:layout_constraintTop_toBottomOf="@+id/fähigkeiten_eigen_feld" />
 
                 <View
                     android:id="@+id/divider"
@@ -277,7 +277,7 @@
 
 
                 <TextView
-                    android:id="@+id/fäghigkeiten_eigen_feld"
+                    android:id="@+id/fähigkeiten_eigen_feld"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
