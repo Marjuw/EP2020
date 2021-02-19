@@ -52,10 +52,10 @@ class FourthFragment : Fragment() {
         showprojects.setOnClickListener(  View.OnClickListener {
 
             var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //erstes Project erzeugen
-            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitglieder)  //zum hinzufügen von Mitglieder zu Projekt 1
+            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 1
 
             var projectsview2: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //zweites Project erzeugen
-            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitglieder)  //zum hinzufügen von Mitglieder zu Projekt 2
+            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 2
 
             var projectmitglied: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ProjektMitglieder erzeugen
             var mitgliedsname: TextView= projectmitglied.findViewById(R.id.personname)  //Beispiel 1 MitgliedsName ändern
@@ -107,10 +107,10 @@ class FourthFragment : Fragment() {
         showprojects2.setOnClickListener(  View.OnClickListener {
 
             var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //erstes Project erzeugen
-            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitglieder)  //zum hinzufügen von Mitglieder zu Projekt 1
+            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 1
 
             var projectsview2: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //zweites Project erzeugen
-            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitglieder)  //zum hinzufügen von Mitglieder zu Projekt 2
+            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 2
 
             var projectmitglied: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ProjektMitglieder erzeugen
             var mitgliedsname: TextView= projectmitglied.findViewById(R.id.personname)  //Beispiel 1 MitgliedsName ändern
@@ -214,17 +214,21 @@ class FourthFragment : Fragment() {
                 var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feld)
                 projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
 
-                var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglieder,null, false)
+
+
 
                 for (person in projekt.teilnehmer){
 
-                    //Mitglieder dynamisch anzeigen lassen
-                    var projektfullMitglieder: LinearLayout=v.findViewById(com.example.pip.R.id.projectmitglieder)
+                    var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ein  Mitglied erzeugen
 
-                    var projektDetailEintragMitgliederName: TextView = projektfullMitglieder.findViewById(R.id.personname)
+                    //Mitglieder dynamisch anzeigen lassen
+                    var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //Layout Projektmitglieder
+
+
+                    var projektDetailEintragMitgliederName: TextView = projektMitgliedview.findViewById(R.id.personname)
                     projektDetailEintragMitgliederName.setText(person)
 
-                    projektMitgliedview.addView(projektfullMitglieder)
+                    projektfullMitglieder.addView(projektMitgliedview)
                 }
 
 
