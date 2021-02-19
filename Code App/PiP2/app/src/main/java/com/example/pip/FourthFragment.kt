@@ -45,102 +45,6 @@ class FourthFragment : Fragment() {
         // Inflate the layout for this fragment
         var v: View= inflater.inflate(com.example.pip.R.layout.activity_teams, container, false)
 
-        var showprojects: TextView = v.findViewById(com.example.pip.R.id.my_projects)   //Button Projekte dynamisch anzeigen lassen
-        var projectslayout: LinearLayout =v.findViewById(com.example.pip.R.id.projects_layout)  //Um Layout für Projekte anzusprechen
-//      var projectmitgliederlayout: LinearLayout= v.findViewById(com.example.pip.R.id.projectmitglieder)  //Um Layout für Mitglieder anzusprechen
-
-        showprojects.setOnClickListener(  View.OnClickListener {
-
-            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //erstes Project erzeugen
-            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 1
-
-            var projectsview2: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //zweites Project erzeugen
-            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 2
-
-            var projectmitglied: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ProjektMitglieder erzeugen
-            var mitgliedsname: TextView= projectmitglied.findViewById(R.id.personname)  //Beispiel 1 MitgliedsName ändern
-            mitgliedsname.setText("Uweeeee")
-
-            var projectmitglied2: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //zweites ProjektMitglieder erzeugen
-            var mitgliedsname2: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname2.setText("Peteeeeer")
-
-            var projectmitglied3: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //drittes ProjektMitglieder erzeugen
-            var mitgliedsname3: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname3.setText("Jürgeeeen")
-
-            var projectmitglied4: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //drittes ProjektMitglieder erzeugen
-            var mitgliedsname4: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname4.setText("Jürgeeeen")
-
-            var projectmitglied5: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //drittes ProjektMitglieder erzeugen
-            var mitgliedsname5: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname5.setText("Jürgeeeen")
-
-            var projectmitglied6: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //drittes ProjektMitglieder erzeugen
-            var mitgliedsname6: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname6.setText("Jürgeeeen")
-
-
-
-            projectslayout.addView(projectsview)  //Project1 erzeugen in diesem Bereich der LayoutListe
-            mitgliederlayout.addView(projectmitglied)  //erstes Teammitglied dem Projekt 1 hinzufügen
-            mitgliederlayout.addView(projectmitglied2) //zweites Teammitglied dem Projekt 1 hinzufügen
-            mitgliederlayout.addView(projectmitglied3)  //erstes Teammitglied dem Projekt 1 hinzufügen
-            mitgliederlayout.addView(projectmitglied4) //zweites Teammitglied dem Projekt 1 hinzufügen
-            mitgliederlayout.addView(projectmitglied5)  //erstes Teammitglied dem Projekt 1 hinzufügen
-            mitgliederlayout.addView(projectmitglied6) //zweites Teammitglied dem Projekt 1 hinzufügen
-
-
-//            projectslayout.addView(projectsview2)  //Projects erzeugen in diesem Bereich der LayoutListe
-//            mitgliederlayout2.addView(projectmitglied3)  //erstes Teammitglied dem Projekt
-
-
-
-
-
-
-        })
-
-        var showprojects2: ImageView = v.findViewById(com.example.pip.R.id.settings)   //Button Projekte dynamisch anzeigen lassen
-
-        showprojects2.setOnClickListener(  View.OnClickListener {
-
-            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //erstes Project erzeugen
-            var mitgliederlayout: LinearLayout =projectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 1
-
-            var projectsview2: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //zweites Project erzeugen
-            var mitgliederlayout2: LinearLayout =projectsview2.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //zum hinzufügen von Mitglieder zu Projekt 2
-
-            var projectmitglied: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ProjektMitglieder erzeugen
-            var mitgliedsname: TextView= projectmitglied.findViewById(R.id.personname)  //Beispiel 1 MitgliedsName ändern
-            mitgliedsname.setText("Uweeeee")
-
-            var projectmitglied2: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //zweites ProjektMitglieder erzeugen
-            var mitgliedsname2: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname2.setText("Peteeeeer")
-
-            var projectmitglied3: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //drittes ProjektMitglieder erzeugen
-            var mitgliedsname3: TextView= projectmitglied2.findViewById(R.id.personname)  //Beispiel 2 MitgliedsName ändern
-            mitgliedsname3.setText("Jürgeeeen")
-
-
-
-//            projectslayout.addView(projectsview)  //Project1 erzeugen in diesem Bereich der LayoutListe
-//            mitgliederlayout.addView(projectmitglied)  //erstes Teammitglied dem Projekt 1 hinzufügen
-//            mitgliederlayout.addView(projectmitglied2) //zweites Teammitglied dem Projekt 1 hinzufügen
-
-
-            projectslayout.addView(projectsview2)  //Projects erzeugen in diesem Bereich der LayoutListe
-            mitgliederlayout2.addView(projectmitglied)  //erstes Teammitglied dem Projekt
-
-
-
-
-
-
-        })
-
 
         val main: MainActivity = MainActivity()
 
@@ -192,7 +96,19 @@ class FourthFragment : Fragment() {
             // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
             var openProjectButton : ImageView = projectsview.findViewById(R.id.openproject)
             openProjectButton.setOnClickListener(View.OnClickListener {
-                val projektEintragID = projekt._id
+
+                /*    var params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  //Text manuell in XML Dynamisch hinzufügen
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                params.setMargins(900,1900,5,6);
+
+                val textView: TextView = TextView(this.context) as TextView
+                textView.setText("textbeispiel")
+                //textView.layoutParams=params
+                this.activity?.addContentView(textView,params)
+
+              */
+
                 var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
                 scrollbar.removeAllViews()
 
@@ -215,18 +131,31 @@ class FourthFragment : Fragment() {
                 projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
 
 
+                // Liste aller Nutzer holen und als String speichern
+                val getListOfUsersString = okHttpGet(ressource_users)
+
+                // Wert der die Liste aller User in einem Array vom Typ One_User enthält
+                val userListe: List<One_User> = gson.fromJson(getListOfUsersString, Array<One_User>::class.java).toList()
 
 
-                for (person in projekt.teilnehmer){
+                var listeUserImProjekt = mutableListOf<One_User>()
+                for (user in userListe) {
+                    if (projekt.teilnehmer.contains(user._id))listeUserImProjekt.add(user)
+                }
+
+
+                for (person in listeUserImProjekt){
 
                     var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ein  Mitglied erzeugen
 
                     //Mitglieder dynamisch anzeigen lassen
                     var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //Layout Projektmitglieder
 
-
+                    var mitgliedName = ""
+                    if (main.loggedinUserID == person._id) mitgliedName = "Du"
+                    else mitgliedName = "${person.vorname} ${person.name}"
                     var projektDetailEintragMitgliederName: TextView = projektMitgliedview.findViewById(R.id.personname)
-                    projektDetailEintragMitgliederName.setText(person)
+                    projektDetailEintragMitgliederName.setText(mitgliedName)
 
                     projektfullMitglieder.addView(projektMitgliedview)
                 }
