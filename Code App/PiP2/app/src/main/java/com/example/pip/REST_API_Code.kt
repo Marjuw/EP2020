@@ -114,7 +114,7 @@ fun okHttpGet(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
     var resJson = ""
 
     GlobalScope.launch {
-        delay(1000)
+//        delay(1000)
 
         val request: Request = Request.Builder()
             .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
@@ -127,7 +127,7 @@ fun okHttpGet(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
             Log.d("HTTP-Request","HTTP Code Response für HTTP-GET auf \"${BASE_URL + URL_RESSOURCE + URL_DETAILS}\": "+response.code)
         }
     }
-    Thread.sleep(2000) // wait for 2 seconds
+    Thread.sleep(200) // wait for 2 seconds
     return resJson
 }
 
@@ -136,7 +136,7 @@ fun okHttpPost(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) 
     var resJson = ""
 
     GlobalScope.launch {
-        delay(1000)
+//        delay(1000)
 
         val body: RequestBody = json.toRequestBody(
             "application/json".toMediaTypeOrNull()
@@ -155,7 +155,7 @@ fun okHttpPost(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) 
 
         }
     }
-    Thread.sleep(2000) // wait for 2 seconds
+    Thread.sleep(200) // wait for 2 seconds
     return resJson
 }
 
@@ -164,7 +164,7 @@ fun okHttpPut(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) :
     var resJson = ""
 
     GlobalScope.launch {
-        delay(1000)
+//        delay(1000)
 
         val body: RequestBody = json.toRequestBody(
             "application/json".toMediaTypeOrNull()
@@ -183,7 +183,7 @@ fun okHttpPut(URL_RESSOURCE: String, URL_DETAILS: String? = "", json : String) :
 
         }
     }
-    Thread.sleep(2000) // wait for 2 seconds
+    Thread.sleep(200) // wait for 2 seconds
     return resJson
 }
 
@@ -192,7 +192,7 @@ fun okHttpDelete(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
     var resJson = ""
 
     GlobalScope.launch {
-        delay(1000)
+//        delay(1000)
         val request: Request = Request.Builder()
             .url(BASE_URL + URL_RESSOURCE + URL_DETAILS)
             .delete()
@@ -206,7 +206,7 @@ fun okHttpDelete(URL_RESSOURCE : String, URL_DETAILS : String?= "") : String {
 
         }
     }
-    Thread.sleep(2000) // wait for 2 seconds
+    Thread.sleep(200) // wait for 2 seconds
     return resJson
 }
 
@@ -240,7 +240,7 @@ data class One_Project(val _id: String? = null,
                        @SerializedName ("gewuenschteTeamgroesse") val gewuenschteTeamgroesse: Int? = null,
                        @SerializedName ("gewuenschteRollen") val gewuenschteRollen: String? = null,
                        @SerializedName ("beschreibung") val beschreibung: String,
-                       @SerializedName ("kategorie") val kategorie: List<Long>,
+                       @SerializedName ("kategorie") val kategorie: List<Int>,
                        @SerializedName ("ausfuehrungsort") val ausfuehrungsort: String,
                        @SerializedName ("ausfuehrungsort_sichtbar") val ausfuehrungsort_sichtbar: Boolean? = null,
 
