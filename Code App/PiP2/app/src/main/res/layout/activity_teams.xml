@@ -51,9 +51,10 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
+        tools:layout_editor_absoluteY="55dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -61,29 +62,35 @@
             android:layout_below="@+id/toolbar">
 
 
+            <LinearLayout
 
-                    <LinearLayout
-
-                        android:id="@+id/projects_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintVertical_bias="0.191"
-                        tools:ignore="MissingConstraints">
-
+                android:id="@+id/projects_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.191"
+                tools:ignore="MissingConstraints">
 
 
-                    </LinearLayout>
-
-
+            </LinearLayout>
 
 
         </ScrollView>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/edit_project_eigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/settings" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
