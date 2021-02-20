@@ -11,6 +11,14 @@
 
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <!-- android:background="@color/teal_200" -->
+
+
+
+    <LinearLayout
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -49,9 +57,23 @@
                 android:textColor="@color/black" />
 
 
+            </LinearLayout>
+
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/projectadmin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_admin"
+            tools:visibility="visible" />
+
     </LinearLayout>
+
+
 
 
     <LinearLayout
