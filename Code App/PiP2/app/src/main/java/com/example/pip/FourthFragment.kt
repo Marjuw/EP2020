@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import com.example.REST_API_Client.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -80,8 +81,6 @@ class FourthFragment : Fragment() {
         val specific_user = gson.fromJson(getSpecificUserString, One_User::class.java) // speichere den User in eine Variable vom Typ One_User
         Log.d("HTTP-Request", "Der gewünschte User ist unter dem Nicknamen \"${specific_user.nickname}\" zu finden.")
 
-        Log.d("HTTP-Request", "Inhalt des Gets: $getSpecificUserString")
-        Log.d("HTTP-Request", "NACH DEM STRING")
 
         val zweiterTeilnehmer = "a87c4718-4004-4851-92f6-081c87aa4643"
         val ersterTeilnehmer = specificUserID
@@ -163,7 +162,14 @@ class FourthFragment : Fragment() {
             // hier wird die Detailansicht für ein Projekt dynamisch erzeugt
             openProjectButton.setOnClickListener(View.OnClickListener {
 
-                ProjektDetailAnsichtÖffnen(v, scrollbar, projekt, projektListenAnforderungenString, projektListenKategorieString, projektListenZweckString)
+                main.detailProjektID = projekt._id.toString()
+
+                var projektDetailAnsicht: ProjektDetailAnsichtFragment = ProjektDetailAnsichtFragment()
+                var transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+                transaction.replace(this.id, projektDetailAnsicht)
+                transaction.commit()
+
+
             })
 
             scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
@@ -172,13 +178,15 @@ class FourthFragment : Fragment() {
 
     fun ProjektDetailAnsichtÖffnen(v: View,
                                    scrollbar: LinearLayout,
-                                   projekt: One_Project,
-                                   projektListenAnforderungenString: MutableList<String>,
-                                   projektListenKategorieString: MutableList<String>,
-                                   projektListenZweckString: MutableList<String>) {
+                                   projekt: One_Project) {
 
         var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
         scrollbar.removeAllViews()
+
+        val projektListenAnforderungenString = TagID_inStringList(projekt.anforderung)
+        val projektListenKategorieString = TagID_inStringList(projekt.kategorie)
+        val projektListenZweckString = TagID_inStringList(projekt.zweck)
+
 
         // Wenn der eingeloggte Nutzer auch Projektleiter ist, dann erscheint der Editier-Button und erhällt seinen Code
         if( main.loggedinUserID == projekt.projektleiter)
