@@ -98,13 +98,14 @@ class FourthFragment : Fragment() {
 
             if( main.loggedinUserID == projekt.projektleiter)
             {
-                var projektDetailEintragAdmin: ImageView = projectsview.findViewById(R.id.projectadmin)
-                projektDetailEintragAdmin.visibility = ImageView.VISIBLE
+                var projektEintragAdmin: ImageView = projectsview.findViewById(R.id.projectadmin)
+                projektEintragAdmin.visibility = ImageView.VISIBLE
             }
 
 
             // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
             var openProjectButton : ImageView = projectsview.findViewById(R.id.openproject)
+            // hier wird die Detailansicht für ein Projekt dynamisch erzeugt
             openProjectButton.setOnClickListener(View.OnClickListener {
 
                 /*    var params: LinearLayout.LayoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  //Text manuell in XML Dynamisch hinzufügen
@@ -118,10 +119,16 @@ class FourthFragment : Fragment() {
                 this.activity?.addContentView(textView,params)
 
               */
-                
+
 
                 var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
                 scrollbar.removeAllViews()
+
+                if( main.loggedinUserID == projekt.projektleiter)
+                {
+                    var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
+                    projektDetailEintragAdmin.visibility = ImageView.VISIBLE
+                }
 
                 var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
                 projektDetailEintragName.setText(projekt.name)
