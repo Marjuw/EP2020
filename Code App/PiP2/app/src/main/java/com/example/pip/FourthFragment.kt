@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.isVisible
 import com.example.REST_API_Client.*
 import com.google.gson.GsonBuilder
 
@@ -93,6 +94,15 @@ class FourthFragment : Fragment() {
             var projektEintragKategorie: TextView = projectsview.findViewById(R.id.projektkategorie)
             projektEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
 
+
+
+            if( main.loggedinUserID == projekt.projektleiter)
+            {
+                var projektDetailEintragAdmin: ImageView = projectsview.findViewById(R.id.projectadmin)
+                projektDetailEintragAdmin.visibility = ImageView.VISIBLE
+            }
+
+
             // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
             var openProjectButton : ImageView = projectsview.findViewById(R.id.openproject)
             openProjectButton.setOnClickListener(View.OnClickListener {
@@ -108,6 +118,7 @@ class FourthFragment : Fragment() {
                 this.activity?.addContentView(textView,params)
 
               */
+                
 
                 var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
                 scrollbar.removeAllViews()
