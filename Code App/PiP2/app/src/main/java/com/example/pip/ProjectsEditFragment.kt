@@ -1,10 +1,17 @@
 package com.example.pip
 
+import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
+import com.example.REST_API_Client.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +41,96 @@ class ProjectsEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_project_edit, container, false)
+        var v: View= inflater.inflate(com.example.pip.R.layout.activity_project_edit, container, false)
+        var scrollbar: LinearLayout =v.findViewById(com.example.pip.R.id.myprojects_Layout)
+
+        val getSpecificProjectString = okHttpGet(ressource_projects ,main.detailProjektID) // hole den JSON String vom spezifischen User aus der Ressource Users
+        val projekt = gson.fromJson(getSpecificProjectString, One_Project::class.java) // speichere den User in eine Variable vom Typ One_User
+
+        ProjektEditAnsichtÖffnen(v, scrollbar, projekt)
+
+
+
+        return v
+    }
+
+    fun ProjektEditAnsichtÖffnen(v: View, scrollbar: LinearLayout, projekt: One_Project) {
+
+        var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.editprojectsfull,null, false)  //ein Detailansicht für ein Projekt erzeugen
+        scrollbar.removeAllViews()
+
+        val projektListenAnforderungenString = TagID_inStringList(projekt.anforderung)
+        val projektListenKategorieString = TagID_inStringList(projekt.kategorie)
+        val projektListenZweckString = TagID_inStringList(projekt.zweck)
+
+
+        var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
+        projektDetailEintragName.setText(projekt.name)
+
+        var projektDetailEintragBeschreibung: TextView = fullprojectsview.findViewById(R.id.projectbeschreibung_feld)
+        projektDetailEintragBeschreibung.setText(projekt.beschreibung)
+
+        var projektDetailEintragOrt: TextView = fullprojectsview.findViewById(R.id.projektortfull)
+        projektDetailEintragOrt.setText(projekt.ausfuehrungsort)
+
+        var projektDetailEintragSkills: TextView = fullprojectsview.findViewById(R.id.anforderungen_full_feld)
+        projektDetailEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+
+        var projektDetailEintragKategorie: TextView = fullprojectsview.findViewById(R.id.projektkategoriefull_feld)
+        projektDetailEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+
+        var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feld)
+        projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
+
+
+        // Liste aller Nutzer holen und als String speichern
+        val getListOfUsersString = okHttpGet(ressource_users)
+
+        // Wert der die Liste aller User in einem Array vom Typ One_User enthält
+        val userListe: List<One_User> = gson.fromJson(getListOfUsersString, Array<One_User>::class.java).toList()
+
+
+        var listeUserImProjekt = mutableListOf<One_User>()
+        for (user in userListe) {
+            if (projekt.teilnehmer.contains(user._id))listeUserImProjekt.add(user)
+        }
+
+
+        for (person in listeUserImProjekt){
+
+            var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ein  Mitglied erzeugen
+
+            //Mitglieder dynamisch anzeigen lassen
+            var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //Layout Projektmitglieder
+
+            var mitgliedName = ""
+            if (main.loggedinUserID == person._id) mitgliedName = "Du"
+            else mitgliedName = "${person.vorname} ${person.name}"
+            var projektDetailEintragMitgliederName: TextView = projektMitgliedview.findViewById(R.id.personname)
+            projektDetailEintragMitgliederName.setText(mitgliedName)
+
+
+            projektfullMitglieder.addView(projektMitgliedview)
+            var mitgliedEntfernen: ImageView = projektMitgliedview.findViewById(R.id.project_remove_member)
+            mitgliedEntfernen.visibility = ImageView.VISIBLE
+            mitgliedEntfernen.setOnClickListener(View.OnClickListener {
+
+                // Person aus der Gruppe entfernen
+                Log.d("Projekt", "Mitglied entfernt")
+
+            })
+        }
+
+
+        scrollbar.addView(fullprojectsview)
+    }
+
+    fun TagID_inStringList(numList: List<Int>? = null): MutableList<String>{
+        val stringListe = mutableListOf<String>()
+        numList?.forEach { x ->
+            main.tagListe?.forEach { y -> if(y.id == x) stringListe.add(y.bezeichnung) }
+        }
+        return stringListe
     }
 
     companion object {

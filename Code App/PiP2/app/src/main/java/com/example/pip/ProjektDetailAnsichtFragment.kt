@@ -63,18 +63,22 @@ class ProjektDetailAnsichtFragment : Fragment() {
         // Wenn der eingeloggte Nutzer auch Projektleiter ist, dann erscheint der Editier-Button und erhällt seinen Code
         if( main.loggedinUserID == projekt.projektleiter)
         {
+
+            var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
+            projektDetailEintragAdmin.visibility = ImageView.VISIBLE
+
             var projektDetailHeaderEdit: ImageView = v.findViewById(R.id.edit_project_eigen)
             projektDetailHeaderEdit.visibility = ImageView.VISIBLE
             projektDetailHeaderEdit.setOnClickListener(View.OnClickListener {
                 Log.d("Projekt", "I'm there !!")
+
+                var projektEditFragment: ProjectsEditFragment = ProjectsEditFragment()
+                var transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+                transaction.replace(this.id, projektEditFragment)
+                transaction.commit()
             })
         }
 
-        if( main.loggedinUserID == projekt.projektleiter)
-        {
-            var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
-            projektDetailEintragAdmin.visibility = ImageView.VISIBLE
-        }
 
         var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
         projektDetailEintragName.setText(projekt.name)

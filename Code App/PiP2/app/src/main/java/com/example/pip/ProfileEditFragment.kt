@@ -46,12 +46,6 @@ class ProfileEditFragment : Fragment() {
 
          var acceptedit: ImageView = v.findViewById(com.example.pip.R.id.acceptIcon)
 
-         var editpersonname: EditText = v.findViewById(com.example.pip.R.id.name_eigen_feld_edit)
-
-        // HIER mein Code
-        val main: MainActivity = MainActivity()
-        main.loggedinUserID
-
         // Einen GET auf einen spezifischen Nutzer ausführen
         val getSpecificUserString = okHttpGet(ressource_users ,main.loggedinUserID) // hole den JSON String vom spezifischen User aus der Ressource Users
         val loggedinUser = gson.fromJson(getSpecificUserString, One_User::class.java) // speichere den User in eine Variable vom Typ One_User
