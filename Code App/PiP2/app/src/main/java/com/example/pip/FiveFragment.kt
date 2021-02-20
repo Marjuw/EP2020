@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.replace
 import com.example.REST_API_Client.*
 
 
@@ -216,7 +217,16 @@ class FiveFragment : Fragment() {
             // hier wird die Detailansicht für ein Projekt dynamisch erzeugt
             openProjectButton.setOnClickListener(View.OnClickListener {
 
-                ProjektDetailAnsichtÖffnen(v, scrollbar, projekt, projektListenAnforderungenString, projektListenKategorieString, projektListenZweckString)
+
+                var x: View= layoutInflater.inflate(com.example.pip.R.layout.activity_teams, null, false)
+                var projektDetailAnsichtFragment: FourthFragment = FourthFragment()
+                var transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+                transaction.replace(this.id, projektDetailAnsichtFragment.ProjektDetailAnsichtÖffnen(
+                        x, scrollbar, projekt, projektListenAnforderungenString, projektListenKategorieString, projektListenZweckString
+                ))
+                transaction.commit()
+
+                //ProjektDetailAnsichtÖffnen(v, scrollbar, projekt, projektListenAnforderungenString, projektListenKategorieString, projektListenZweckString)
             })
 
             scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
