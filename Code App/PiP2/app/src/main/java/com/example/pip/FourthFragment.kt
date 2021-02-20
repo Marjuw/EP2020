@@ -124,9 +124,21 @@ class FourthFragment : Fragment() {
                 var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
                 scrollbar.removeAllViews()
 
+                // Wenn der eingeloggte Nutzer auch Projektleiter ist, dann erscheint der Editier-Button und erhällt seinen Code
                 if( main.loggedinUserID == projekt.projektleiter)
                 {
-                    var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadmin)
+                    var projektDetailHeaderEdit: ImageView = v.findViewById(R.id.edit_project_eigen)
+                    projektDetailHeaderEdit.visibility = ImageView.VISIBLE
+                    projektDetailHeaderEdit.setOnClickListener(View.OnClickListener {
+                        Log.d("Projekt", "I'm there !!")
+                    })
+
+
+                }
+
+                if( main.loggedinUserID == projekt.projektleiter)
+                {
+                    var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
                     projektDetailEintragAdmin.visibility = ImageView.VISIBLE
                 }
 
