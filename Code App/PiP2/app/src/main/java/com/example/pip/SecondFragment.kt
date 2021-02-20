@@ -54,16 +54,17 @@ class SecondFragment : Fragment() {
         var suchenachprojectButton: Button = v.findViewById(com.example.pip.R.id.projekt_button)
         var suchenachpersonButton: Button = v.findViewById(com.example.pip.R.id.person_button)
 
+        var isProjectButtonGreen = true
         suchenachprojectButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
 
-            if (suchenachprojectButton.background==getResources().getDrawable(R.drawable.rounded_corner_grey)) {
+            if (isProjectButtonGreen) {
 
                 suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
                 suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
 
             }
             else {
-
+                isProjectButtonGreen == false
                 suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
                 suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
 
