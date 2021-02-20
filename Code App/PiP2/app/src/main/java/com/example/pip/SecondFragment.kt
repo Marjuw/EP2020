@@ -1,7 +1,12 @@
 package com.example.pip
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.Shape
 import android.os.Bundle
+import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -43,10 +48,53 @@ class SecondFragment : Fragment() {
         var v: View= inflater.inflate(com.example.pip.R.layout.activity_search, container, false)
 
 
-        var showprojects: Button = v.findViewById(com.example.pip.R.id.suchen_button)   //Projekte dynamisch anzeigen lassen
-        var scrollbar: LinearLayout =v.findViewById(com.example.pip.R.id.suchresultat_layout)
 
-        showprojects.setOnClickListener(  View.OnClickListener {
+        var scrollbar: LinearLayout =v.findViewById(com.example.pip.R.id.suchresultat_layout) //Layout zum hinzugügen der Suchergebnisse
+
+        var suchenachprojectButton: Button = v.findViewById(com.example.pip.R.id.projekt_button)
+        var suchenachpersonButton: Button = v.findViewById(com.example.pip.R.id.person_button)
+
+        suchenachprojectButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
+
+            if (suchenachprojectButton.background==getResources().getDrawable(R.drawable.rounded_corner_grey)) {
+
+                suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+                suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+
+            }
+            else {
+
+                suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+                suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+
+            }
+
+
+        })
+
+
+        suchenachpersonButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
+
+            if (suchenachpersonButton.background==getResources().getDrawable(R.drawable.rounded_corner_grey)) {
+
+                suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+                suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+
+            }
+
+            else {
+
+                suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+                suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+
+            }
+
+        })
+
+
+
+        var showprojects: Button = v.findViewById(com.example.pip.R.id.suchen_button)   //Suchbutton
+        showprojects.setOnClickListener(  View.OnClickListener {   //suchbutton onclick
 
             var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
 
@@ -57,9 +105,8 @@ class SecondFragment : Fragment() {
 
         })
 
-        var clearsearch: Button = v.findViewById(com.example.pip.R.id.zurücksetzen_button)   //Projektesuche & Einstellungen zurücksetzen lassen
-
-        clearsearch.setOnClickListener(  View.OnClickListener {
+        var clearsearch: Button = v.findViewById(com.example.pip.R.id.zurücksetzen_button)   //Button Projektesuche & Einstellungen zurücksetzen lassen
+        clearsearch.setOnClickListener(  View.OnClickListener {  //Button Projektesuche & Einstellungen zurücksetzen lassen On click
 
             scrollbar.removeAllViews()  //Suchresultate löschen
 
