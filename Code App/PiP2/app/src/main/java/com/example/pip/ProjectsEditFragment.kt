@@ -55,6 +55,7 @@ class ProjectsEditFragment : Fragment() {
     }
 
     fun ProjektEditAnsichtÖffnen(v: View, scrollbar: LinearLayout, projekt: One_Project) {
+        var neueTeilnehmerListe = projekt.teilnehmer
 
         var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.editprojectsfull,null, false)  //ein Detailansicht für ein Projekt erzeugen
         scrollbar.removeAllViews()
@@ -83,6 +84,35 @@ class ProjectsEditFragment : Fragment() {
         projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
 
 
+        var acceptedit: ImageView = v.findViewById(com.example.pip.R.id.acceptIconprojects)
+        acceptedit.setOnClickListener(  View.OnClickListener {
+
+            var putProjekt: One_Project = One_Project(
+                projektleiter = projekt.projektleiter,
+                name = projektDetailEintragName.text.toString(),
+                beschreibung = projektDetailEintragBeschreibung.text.toString(),
+                kategorie = projekt.kategorie,
+                ausfuehrungsort = projektDetailEintragOrt.text.toString(),
+                zweck = projekt.zweck,
+                teilnehmer = neueTeilnehmerListe )
+            val jsonProjectObject = gson.toJson(putProjekt) // das One_Project Objekt wird in einen JSON String geparset
+            okHttpPut(ressource_projects, projekt._id, jsonProjectObject) // das Projekt wird gepostet
+
+            Log.d("Projekt", "erfolgreich editiert, kehre zurück zum projekt detail screen")
+
+            var projektDetailAnsicht: ProjektDetailAnsichtFragment = ProjektDetailAnsichtFragment()
+            var transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            transaction.replace(this.id, projektDetailAnsicht)
+            transaction.commit()
+
+        })
+
+
+
+
+
+
+
         // Liste aller Nutzer holen und als String speichern
         val getListOfUsersString = okHttpGet(ressource_users)
 
@@ -108,17 +138,28 @@ class ProjectsEditFragment : Fragment() {
             else mitgliedName = "${person.vorname} ${person.name}"
             var projektDetailEintragMitgliederName: TextView = projektMitgliedview.findViewById(R.id.personname)
             projektDetailEintragMitgliederName.setText(mitgliedName)
-
-
             projektfullMitglieder.addView(projektMitgliedview)
-            var mitgliedEntfernen: ImageView = projektMitgliedview.findViewById(R.id.project_remove_member)
-            mitgliedEntfernen.visibility = ImageView.VISIBLE
-            mitgliedEntfernen.setOnClickListener(View.OnClickListener {
 
-                // Person aus der Gruppe entfernen
-                Log.d("Projekt", "Mitglied entfernt")
+            if (person._id != main.loggedinUserID)
+            {
 
-            })
+                var mitgliedEntfernen: ImageView = projektMitgliedview.findViewById(R.id.project_remove_member)
+                mitgliedEntfernen.visibility = ImageView.VISIBLE
+                mitgliedEntfernen.setOnClickListener(View.OnClickListener {
+
+                    // Person aus der Gruppe entfernen
+                    Log.d("Projekt", "Mitglied entfernt")
+
+                    Log.d("Projekt", neueTeilnehmerListe.toString())
+                    neueTeilnehmerListe = neueTeilnehmerListe.filterIndexed { index, i ->  i != person._id }
+                    Log.d("Projekt", neueTeilnehmerListe.toString())
+
+                    projektfullMitglieder.removeView(projektMitgliedview)
+
+
+                })
+            }
+
         }
 
 
