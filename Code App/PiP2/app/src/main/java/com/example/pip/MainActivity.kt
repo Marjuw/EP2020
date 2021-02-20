@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     // Wert der die Liste aller Tags in einem Array vom Typ One_Tag enthält
     var tagListe: List<One_Tag> = gson.fromJson(getListOfTagsString, Array<One_Tag>::class.java).toList()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // Ausgabe aller Nutzer mit Nicknamen

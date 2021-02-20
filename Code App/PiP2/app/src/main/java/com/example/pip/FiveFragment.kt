@@ -17,6 +17,7 @@ import com.example.REST_API_Client.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
+
 /**
  * A simple [Fragment] subclass.
  * Use the [FiveFragment.newInstance] factory method to
@@ -48,8 +49,6 @@ class FiveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        val main: MainActivity = MainActivity()
 
         // Inflate the layout for this fragment
         val v: View= inflater.inflate(com.example.pip.R.layout.activity_profile, container, false)
@@ -134,19 +133,61 @@ class FiveFragment : Fragment() {
         //Projekte dynamisch anzeigen lassen
         var scrollbar: LinearLayout=v.findViewById(com.example.pip.R.id.layout_list)
 
-        for(projekt in loggedinUserProjektListe) {
 
-            var projektListenAnforderungenString = mutableListOf<String>()
-            projekt.anforderung?.forEach { x ->
-                main.tagListe?.forEach { y -> if (y.id == x) projektListenAnforderungenString.add(y.bezeichnung) }
-            }
+        ProjekteDynamischErzeugen(v, scrollbar, loggedinUserProjektListe)
 
-            var projektListenKategorieString = mutableListOf<String>()
-            projekt.kategorie.forEach { x ->
-                main.tagListe?.forEach { y -> if (y.id == x) projektListenKategorieString.add(y.bezeichnung) }
-            }
+//        for(projekt in loggedinUserProjektListe) {
+//
+//            val projektListenAnforderungenString = TagID_inStringList(projekt.anforderung)
+//            val projektListenKategorieString = TagID_inStringList(projekt.kategorie)
+//
+//            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
+//
+//            var projektEintragName: TextView = projectsview.findViewById(R.id.projektname)
+//            projektEintragName.setText(projekt.name)
+//
+//            var projektEintragOrt: TextView = projectsview.findViewById(R.id.projektort)
+//            projektEintragOrt.setText(projekt.ausfuehrungsort)
+//
+//            var projektEintragSkills: TextView = projectsview.findViewById(R.id.projektskills)
+//            projektEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+//
+//            var projektEintragKategorie: TextView = projectsview.findViewById(R.id.projektkategorie)
+//            projektEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+//
+//
+//            scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
+//        }
 
-            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)  //ein Project erzeugen
+
+
+
+        return v
+
+
+    }
+
+
+    fun TagID_inStringList(numList: List<Int>? = null): MutableList<String>{
+        val stringListe = mutableListOf<String>()
+        numList?.forEach { x ->
+            main.tagListe?.forEach { y -> if(y.id == x) stringListe.add(y.bezeichnung) }
+        }
+        return stringListe
+    }
+
+    fun ProjekteDynamischErzeugen(v: View,
+                                  scrollbar: LinearLayout,
+                                  Projektliste: MutableList<One_Project>){
+
+        for(projekt in Projektliste) {
+
+            val projektListenAnforderungenString = TagID_inStringList(projekt.anforderung)
+            val projektListenKategorieString = TagID_inStringList(projekt.kategorie)
+            val projektListenZweckString = TagID_inStringList(projekt.zweck)
+
+            //eine Project-Ansicht erzeugen
+            var projectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects,null, false)
 
             var projektEintragName: TextView = projectsview.findViewById(R.id.projektname)
             projektEintragName.setText(projekt.name)
@@ -160,18 +201,114 @@ class FiveFragment : Fragment() {
             var projektEintragKategorie: TextView = projectsview.findViewById(R.id.projektkategorie)
             projektEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
 
+
+
+            // wenn eingeloggter Nutzer Projektleiter ist: zeige Admin Logo in der Projektliste
+            if( main.loggedinUserID == projekt.projektleiter)
+            {
+                var projektEintragAdmin: ImageView = projectsview.findViewById(R.id.projectadmin)
+                projektEintragAdmin.visibility = ImageView.VISIBLE
+            }
+
+
             // der ID Wert des Projekts, den du benötigst wenn du auf den Pfeil klickst um das spezifische Projekt dann zu öffnen
-            val projektEintragID = projekt._id
+            var openProjectButton : ImageView = projectsview.findViewById(R.id.openproject)
+            // hier wird die Detailansicht für ein Projekt dynamisch erzeugt
+            openProjectButton.setOnClickListener(View.OnClickListener {
+
+                ProjektDetailAnsichtÖffnen(v, scrollbar, projekt, projektListenAnforderungenString, projektListenKategorieString, projektListenZweckString)
+            })
 
             scrollbar.addView(projectsview)  //Projects erzeugen in diesem Bereich der LayoutListe
         }
+    }
+
+    fun ProjektDetailAnsichtÖffnen(v: View,
+                                   scrollbar: LinearLayout,
+                                   projekt: One_Project,
+                                   projektListenAnforderungenString: MutableList<String>,
+                                   projektListenKategorieString: MutableList<String>,
+                                   projektListenZweckString: MutableList<String>) {
+
+        var fullprojectsview: View= layoutInflater.inflate(com.example.pip.R.layout.projects_full,null, false)  //ein Detailansicht für ein Projekt erzeugen
+        scrollbar.removeAllViews()
+
+//         Wenn der eingeloggte Nutzer auch Projektleiter ist, dann erscheint der Editier-Button und erhällt seinen Code
+//        if( main.loggedinUserID == projekt.projektleiter)
+//        {
+//            var projektDetailHeaderEdit: ImageView = v.findViewById(R.id.edit_project_eigen)
+//            projektDetailHeaderEdit.visibility = ImageView.VISIBLE
+//            projektDetailHeaderEdit.setOnClickListener(View.OnClickListener {
+//                Log.d("Projekt", "I'm there !!")
+//            })
+//
+//
+//        }
+
+        if( main.loggedinUserID == projekt.projektleiter)
+        {
+            var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
+            projektDetailEintragAdmin.visibility = ImageView.VISIBLE
+        }
+
+        var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
+        projektDetailEintragName.setText(projekt.name)
+
+        var projektDetailEintragBeschreibung: TextView = fullprojectsview.findViewById(R.id.projectbeschreibung_feld)
+        projektDetailEintragBeschreibung.setText(projekt.beschreibung)
+
+        var projektDetailEintragOrt: TextView = fullprojectsview.findViewById(R.id.projektortfull)
+        projektDetailEintragOrt.setText(projekt.ausfuehrungsort)
+
+        var projektDetailEintragSkills: TextView = fullprojectsview.findViewById(R.id.anforderungen_full_feld)
+        projektDetailEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
+
+        var projektDetailEintragKategorie: TextView = fullprojectsview.findViewById(R.id.projektkategoriefull_feld)
+        projektDetailEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
+
+        var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feld)
+        projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
 
 
+        // Liste aller Nutzer holen und als String speichern
+        val getListOfUsersString = okHttpGet(ressource_users)
+
+        // Wert der die Liste aller User in einem Array vom Typ One_User enthält
+        val userListe: List<One_User> = gson.fromJson(getListOfUsersString, Array<One_User>::class.java).toList()
 
 
-        return v
+        var listeUserImProjekt = mutableListOf<One_User>()
+        for (user in userListe) {
+            if (projekt.teilnehmer.contains(user._id))listeUserImProjekt.add(user)
+        }
 
 
+        for (person in listeUserImProjekt){
+
+            var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ein  Mitglied erzeugen
+
+            //Mitglieder dynamisch anzeigen lassen
+            var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //Layout Projektmitglieder
+
+            var mitgliedName = ""
+            if (main.loggedinUserID == person._id) mitgliedName = "Du"
+            else mitgliedName = "${person.vorname} ${person.name}"
+            var projektDetailEintragMitgliederName: TextView = projektMitgliedview.findViewById(R.id.personname)
+            projektDetailEintragMitgliederName.setText(mitgliedName)
+
+
+            // entfernen vom Mitglied
+//                    if( main.loggedinUserID == projekt.projektleiter)
+//                    {
+//                        var projektDetailMitgliedEntfernen: ImageView = projektMitgliedview.findViewById(R.id.project_remove_member)
+//                        projektDetailMitgliedEntfernen.visibility = ImageView.VISIBLE
+//                    }
+
+            projektfullMitglieder.addView(projektMitgliedview)
+        }
+
+
+        scrollbar.addView(fullprojectsview)
     }
 
 

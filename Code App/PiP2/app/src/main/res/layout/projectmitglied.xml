@@ -50,11 +50,13 @@
 
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/project_remove_member"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="23dp"
-            app:srcCompat="@drawable/ic_remove_person" />
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_remove_person"
+            tools:visibility="visible" />
 
     </LinearLayout>
 
