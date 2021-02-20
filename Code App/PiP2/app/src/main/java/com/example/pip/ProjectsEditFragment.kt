@@ -64,22 +64,22 @@ class ProjectsEditFragment : Fragment() {
         val projektListenZweckString = TagID_inStringList(projekt.zweck)
 
 
-        var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefull)
+        var projektDetailEintragName: TextView = fullprojectsview.findViewById(R.id.projektnamefulledit)
         projektDetailEintragName.setText(projekt.name)
 
-        var projektDetailEintragBeschreibung: TextView = fullprojectsview.findViewById(R.id.projectbeschreibung_feld)
+        var projektDetailEintragBeschreibung: TextView = fullprojectsview.findViewById(R.id.projectbeschreibung_feldedit)
         projektDetailEintragBeschreibung.setText(projekt.beschreibung)
 
-        var projektDetailEintragOrt: TextView = fullprojectsview.findViewById(R.id.projektortfull)
+        var projektDetailEintragOrt: TextView = fullprojectsview.findViewById(R.id.projektortfulledit)
         projektDetailEintragOrt.setText(projekt.ausfuehrungsort)
 
-        var projektDetailEintragSkills: TextView = fullprojectsview.findViewById(R.id.anforderungen_full_feld)
+        var projektDetailEintragSkills: TextView = fullprojectsview.findViewById(R.id.anforderungen_full_feldedit)
         projektDetailEintragSkills.setText(projektListenAnforderungenString.joinToString(separator = ", "))
 
-        var projektDetailEintragKategorie: TextView = fullprojectsview.findViewById(R.id.projektkategoriefull_feld)
+        var projektDetailEintragKategorie: TextView = fullprojectsview.findViewById(R.id.projektkategoriefull_feldedit)
         projektDetailEintragKategorie.setText(projektListenKategorieString.joinToString(separator = ", "))
 
-        var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feld)
+        var projektDetailEintragZweck: TextView = fullprojectsview.findViewById(R.id.projectzweck_full_feldedit)
         projektDetailEintragZweck.setText(projektListenZweckString.joinToString(separator = ", "))
 
 
@@ -101,7 +101,7 @@ class ProjectsEditFragment : Fragment() {
             var projektMitgliedview: View= layoutInflater.inflate(com.example.pip.R.layout.projectmitglied,null, false)  //ein  Mitglied erzeugen
 
             //Mitglieder dynamisch anzeigen lassen
-            var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayout)  //Layout Projektmitglieder
+            var projektfullMitglieder: LinearLayout=fullprojectsview.findViewById(com.example.pip.R.id.projectmitgliederlayoutedit)  //Layout Projektmitglieder
 
             var mitgliedName = ""
             if (main.loggedinUserID == person._id) mitgliedName = "Du"
