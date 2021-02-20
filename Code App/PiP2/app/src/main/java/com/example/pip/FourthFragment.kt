@@ -126,7 +126,7 @@ class FourthFragment : Fragment() {
 
                 if( main.loggedinUserID == projekt.projektleiter)
                 {
-                    var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadminfull)
+                    var projektDetailEintragAdmin: ImageView = fullprojectsview.findViewById(R.id.projectadmin)
                     projektDetailEintragAdmin.visibility = ImageView.VISIBLE
                 }
 

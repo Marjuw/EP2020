@@ -15,6 +15,16 @@
         layout="@layout/toolbar" />
 
     <ImageView
+        android:id="@+id/edit_project_eigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/settings" />
+
+    <ImageView
         android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +64,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
         tools:layout_editor_absoluteY="55dp">
 
         <ScrollView
@@ -83,14 +94,6 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/edit_project_eigen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="@+id/settings" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
