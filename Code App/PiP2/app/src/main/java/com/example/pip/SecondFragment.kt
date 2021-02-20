@@ -51,10 +51,11 @@ class SecondFragment : Fragment() {
 
         var scrollbar: LinearLayout =v.findViewById(com.example.pip.R.id.suchresultat_layout) //Layout zum hinzugügen der Suchergebnisse
 
-        var suchenachprojectButton: Button = v.findViewById(com.example.pip.R.id.projekt_button)
-        var suchenachpersonButton: Button = v.findViewById(com.example.pip.R.id.person_button)
+        var suchenachprojectButton: Button = v.findViewById(com.example.pip.R.id.projekt_button)   //ProjektButton
+        var suchenachpersonButton: Button = v.findViewById(com.example.pip.R.id.person_button)   //PersonButton
 
         var isProjectButtonGreen = true
+
         suchenachprojectButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
 
             if (isProjectButtonGreen) {
@@ -73,7 +74,6 @@ class SecondFragment : Fragment() {
 
         })
 
-
         suchenachpersonButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
 
             if (suchenachpersonButton.background==getResources().getDrawable(R.drawable.rounded_corner_grey)) {
@@ -87,6 +87,48 @@ class SecondFragment : Fragment() {
 
                 suchenachprojectButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
                 suchenachpersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+
+            }
+
+        })
+
+
+        var ortinPersonButton: Button = v.findViewById(com.example.pip.R.id.inperson_button)   //ProjektButton
+        var ortinOnlineButton: Button = v.findViewById(com.example.pip.R.id.online_button)   //PersonButton
+
+        var isOrtButtonGreen = true
+
+        ortinPersonButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
+
+            if (isProjectButtonGreen) {
+
+                ortinPersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+                ortinOnlineButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+
+            }
+            else {
+                isProjectButtonGreen == false
+                ortinPersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+                ortinOnlineButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+
+            }
+
+
+        })
+
+        ortinOnlineButton.setOnClickListener(  View.OnClickListener {   //Suche Nach Buttons Onclick
+
+            if (ortinOnlineButton.background==getResources().getDrawable(R.drawable.rounded_corner_grey)) {
+
+                ortinPersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
+                ortinOnlineButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+
+            }
+
+            else {
+
+                ortinPersonButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_grey));
+                ortinOnlineButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded_corner_green));
 
             }
 
