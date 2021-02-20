@@ -120,7 +120,9 @@ class SecondFragment : Fragment() {
                 // Wert der die Liste aller Projekte in einem Array vom Typ One_Project enthält
                 var projektListe: List<One_Project> = gson.fromJson(getListOfProjectsString, Array<One_Project>::class.java).toList()
 
-                if (suche != sucheDefaultWert) projektListe = projektListe.filterIndexed { index, i ->  i.name.contains(suche, true) }
+                if (suche != sucheDefaultWert) projektListe = projektListe.filterIndexed { index, i ->
+                    i.name.contains(suche, true) ||
+                    i.ausfuehrungsort.contains(suche, true) }
                 Log.d("Suche", suche.toString())
 
                 projekteDynamischErzeugen(scrollbar, projektListe)
@@ -136,8 +138,8 @@ class SecondFragment : Fragment() {
                 if (suche != sucheDefaultWert) userListe = userListe.filterIndexed { index, i ->
                     i.vorname.toString().contains(suche, true) ||
                     i.name.toString().contains(suche, true) ||
-                    i.nickname.toString().contains(suche, true)
-                }
+                    i.nickname.toString().contains(suche, true) ||
+                    i.ort.toString().contains(suche, true) }
 
                 nutzerDynamischErzeugen(scrollbar, userListe)
             }
